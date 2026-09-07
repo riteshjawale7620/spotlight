@@ -17,6 +17,7 @@ import {
   getEditorialTrio,
   getInsights,
   getMultimedia,
+  getLatestMagazine,
 } from '@/lib/services/contentService'
 
 export const revalidate = 60 // ISR revalidation window
@@ -32,6 +33,7 @@ export default async function HomePage() {
     editorialTrio,
     insights,
     multimedia,
+    latestMagazine,
   ] = await Promise.all([
     getHeroFeature(),
     getHeroRail(),
@@ -41,10 +43,11 @@ export default async function HomePage() {
     getEditorialTrio(),
     getInsights(),
     getMultimedia(),
+    getLatestMagazine(),
   ])
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBFBFA]">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
         <HeroSection initialLead={heroFeature} railItems={heroRail} />
@@ -62,7 +65,7 @@ export default async function HomePage() {
           event={multimedia.event}
           video={multimedia.video}
         />
-        <IssueAndNewsletter />
+        <IssueAndNewsletter magazine={latestMagazine} />
       </main>
       <Footer />
     </div>

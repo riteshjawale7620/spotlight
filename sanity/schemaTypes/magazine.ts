@@ -49,5 +49,22 @@ export const magazine = defineType({
       title: 'Published Date',
       type: 'date',
     }),
+    defineField({
+      name: 'isCurrentCover',
+      title: 'Active Homepage Cover Story?',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'tagline',
+      title: 'Cover Story Tagline (e.g. Building the Future of Human Wellness)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'designations',
+      title: 'Cover Badges / Designations',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
   ],
 })

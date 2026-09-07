@@ -10,14 +10,14 @@ interface EditorsSelectionProps {
 
 export default function EditorsSelection({ primary, compact }: EditorsSelectionProps) {
   return (
-    <section className="w-full bg-[#FBFBFA] border-b border-[#E2DDD5] py-9 sm:py-14 lg:py-18">
+    <section className="w-full bg-white border-b border-neutral-200 py-9 sm:py-14 lg:py-18">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header with Horizontal Line Between Title and View All */}
         <div className="flex items-center gap-3 sm:gap-6 mb-6 sm:mb-10">
           <h2 className="font-serif text-lg sm:text-2xl uppercase tracking-[0.12em] text-[#121214] font-medium shrink-0">
             Editor&apos;s Selection
           </h2>
-          <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+          <div className="flex-1 h-[1px] bg-neutral-200" />
           <Link
             href="/category/editors-choice"
             className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-neutral-600 hover:text-[#A67C52] transition-colors shrink-0 group"
@@ -35,13 +35,13 @@ export default function EditorsSelection({ primary, compact }: EditorsSelectionP
               <article key={item.id} className="group flex flex-col justify-between">
                 <div>
                   {/* Photo container */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-200 mb-4">
+                  <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-200 mb-4">
                     <Image
                       src={item.imageUrl}
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 30vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover"
                     />
                   </div>
 
@@ -71,7 +71,7 @@ export default function EditorsSelection({ primary, compact }: EditorsSelectionP
           </div>
 
           {/* Right: 3 Compact Row Cards (3 cols) */}
-          <div className="lg:col-span-4 xl:col-span-3 flex flex-col justify-between divide-y divide-[#E8E8E2] border-t lg:border-t-0 lg:border-l border-[#E8E8E2] lg:pl-8 pt-6 lg:pt-0">
+          <div className="lg:col-span-4 xl:col-span-3 flex flex-col justify-between divide-y divide-neutral-200 border-t lg:border-t-0 lg:border-l border-neutral-200 lg:pl-8 pt-6 lg:pt-0">
             {compact.slice(0, 3).map((item) => (
               <article
                 key={item.id}
@@ -83,7 +83,7 @@ export default function EditorsSelection({ primary, compact }: EditorsSelectionP
                     alt={item.title}
                     fill
                     sizes="80px"
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="object-cover"
                   />
                 </div>
 

@@ -18,6 +18,8 @@ export const metadata: Metadata = {
 import { sanityFetch } from '@/sanity/lib/client'
 import { ALL_MAGAZINES_QUERY } from '@/sanity/lib/queries'
 
+export const revalidate = 60
+
 export default async function MagazinePage() {
   const sanityMagazines = await sanityFetch<any[]>({
     query: ALL_MAGAZINES_QUERY,

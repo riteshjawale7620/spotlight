@@ -24,7 +24,7 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
   }
 
   return (
-    <section className="w-full bg-[#FBFBFA] border-b border-[#E2DDD5] py-9 sm:py-14 lg:py-18">
+    <section className="w-full bg-white border-b border-neutral-200 py-9 sm:py-14 lg:py-18">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with Line Between Title and Right Actions */}
         <div className="flex items-center gap-3 sm:gap-6 mb-6 sm:mb-10">
@@ -32,7 +32,7 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
             Insights &amp; Analysis
           </h2>
 
-          <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+          <div className="flex-1 h-[1px] bg-neutral-200" />
 
           <div className="flex items-center gap-4 shrink-0">
             <Link
@@ -73,13 +73,13 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
               className="min-w-[240px] sm:min-w-[260px] md:min-w-[270px] flex-shrink-0 snap-start group flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900 mb-3.5">
+                <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-900 mb-3.5">
                   <Image
                     src={item.imageUrl}
                     alt={item.title}
                     fill
                     sizes="270px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
                 </div>

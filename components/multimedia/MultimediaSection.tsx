@@ -24,7 +24,7 @@ export default function MultimediaSection({
   }
 
   return (
-    <section className="w-full bg-[#FBFBFA] border-b border-[#E2DDD5] py-9 sm:py-14 lg:py-20">
+    <section className="w-full bg-white border-b border-neutral-200 py-9 sm:py-14 lg:py-20">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Grid */}
@@ -40,7 +40,7 @@ export default function MultimediaSection({
                   The Spotlight Talks
                 </h3>
               </div>
-              <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+              <div className="flex-1 h-[1px] bg-neutral-200" />
               <Link
                 href="/multimedia/podcasts"
                 className="group/link flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#A67C52] transition-colors shrink-0"
@@ -135,7 +135,7 @@ export default function MultimediaSection({
                   Upcoming Events
                 </h3>
               </div>
-              <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+              <div className="flex-1 h-[1px] bg-neutral-200" />
               <Link
                 href="/events"
                 className="group/link flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#A67C52] transition-colors shrink-0"
@@ -152,7 +152,7 @@ export default function MultimediaSection({
                 alt={event.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-[0.45]"
+                className="object-cover brightness-[0.45]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
 
@@ -210,7 +210,7 @@ export default function MultimediaSection({
                   Videos
                 </h3>
               </div>
-              <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+              <div className="flex-1 h-[1px] bg-neutral-200" />
               <Link
                 href="/multimedia/videos"
                 className="group/link flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#A67C52] transition-colors shrink-0"
@@ -227,7 +227,7 @@ export default function MultimediaSection({
                 alt={video.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover object-top brightness-60 group-hover:scale-105 group-hover:brightness-75 transition-all duration-700"
+                className="object-cover object-top brightness-60 group-hover:brightness-75 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/25" />
 

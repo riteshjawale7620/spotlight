@@ -13,7 +13,10 @@ interface MagazineIssue {
   year: number
   title: string
   subtitle: string
+  leaderName?: string
+  editionTag?: string
   category: string
+  categories?: string[]
   imageUrl: string
   slug: string
   description?: string
@@ -212,63 +215,114 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
   const [selectedIssue, setSelectedIssue] = useState<MagazineIssue | null>(null)
   const [isSubscribeOpen, setIsSubscribeOpen] = useState<boolean>(false)
 
-  // Integrate live Sanity magazines with default editorial archive
+  // Integrate live Sanity magazines with default fallback archive
   const allIssues: MagazineIssue[] = (() => {
     if (!initialSanityMagazines || initialSanityMagazines.length === 0) {
       return DEFAULT_MAGAZINE_ISSUES
     }
 
     const mappedSanity: MagazineIssue[] = initialSanityMagazines.map((m, idx) => {
-      const titleLower = (m.title || '').toLowerCase()
-      const descLower = (m.description || '').toLowerCase()
+      const title = (m.title || '').trim()
+      let leaderName = ''
+      let issueTitle = title
 
-      let year = 2024
-      if (titleLower.includes('2026') || descLower.includes('2026')) year = 2026
-      else if (titleLower.includes('2025') || descLower.includes('2025')) year = 2025
+      // Format "LeaderName_Topic" or "LeaderName - Topic"
+      if (title.includes('_')) {
+        const parts = title.split('_')
+        leaderName = parts[0].trim()
+        issueTitle = parts.slice(1).join('_').trim()
+      } else if (title.includes(' - ')) {
+        const parts = title.split(' - ')
+        leaderName = parts[0].trim()
+        issueTitle = parts.slice(1).join(' - ').trim()
+      }
 
-      let category = 'LEADERSHIP'
-      if (titleLower.includes('ai') || descLower.includes('ai')) category = 'TECHNOLOGY'
-      else if (titleLower.includes('entrepreneur') || titleLower.includes('business')) category = 'INDUSTRY'
-      else if (titleLower.includes('innovat')) category = 'INNOVATION'
+      // Year resolution:
+      // 1. editionTag (e.g. "THE 2026 EDITION")
+      // 2. regex check in title, slug, or description
+      // 3. publishedDate
+      // 4. _createdAt
+      let year = 2026
+      const editionMatch = (m.editionTag || '').match(/\b(20\d\d)\b/)
+      const titleMatch = `${title} ${m.slug || ''} ${m.description || ''}`.match(/\b(20\d\d)\b/)
 
-      const titleParts = (m.title || '').split(' - ')
-      const mainTitle = titleParts[0] || m.title
-      const subTitle = titleParts[1] || m.description || 'Special Editorial Feature'
+      if (editionMatch) {
+        year = parseInt(editionMatch[1], 10)
+      } else if (titleMatch) {
+        year = parseInt(titleMatch[1], 10)
+      } else if (m.publishedDate) {
+        year = new Date(m.publishedDate).getFullYear()
+      } else if (m._createdAt) {
+        year = new Date(m._createdAt).getFullYear()
+      }
+
+      // Month / Edition label
+      let monthYear = `${year} Edition`
+      if (m.editionTag) {
+        monthYear = m.editionTag
+      } else if (m.publishedDate) {
+        monthYear = new Date(m.publishedDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+      }
+
+      // Categorization for tabs
+      const textToSearch = `${title} ${m.description || ''} ${m.subtitle || ''} ${m.keywords || ''}`.toLowerCase()
+      const categories: string[] = ['LEADERSHIP']
+
+      if (/health|wellness|fitness|medical|pharma/.test(textToSearch)) categories.push('PEOPLE')
+      if (/women|female|empower|education/.test(textToSearch)) categories.push('PEOPLE')
+      if (/agribio|soiltech|sustainab|green|climate|earth/.test(textToSearch)) categories.push('SUSTAINABILITY')
+      if (/ai|tech|digital|cyber|software|quantum|data/.test(textToSearch)) categories.push('TECHNOLOGY')
+      if (/industry|manufacturing|chemical|titan|logistics|factory|industrial/.test(textToSearch)) categories.push('INDUSTRY')
+      if (/disrupt|innovat|revolution|transform|breakthrough/.test(textToSearch)) categories.push('INNOVATION')
+      if (/economy|market|finance|invest|banking|trade/.test(textToSearch)) categories.push('ECONOMY')
+
+      const primaryCategory = categories[categories.length - 1] || 'LEADERSHIP'
+      const subtitle = m.subtitle || m.description || (leaderName ? `Featuring ${leaderName}` : 'Special Editorial Edition')
 
       return {
         id: m._id || `sanity-${idx}`,
-        issueNumber: `ISSUE ${String(idx + 1).padStart(2, '0')}`,
-        monthYear: m.publishedDate ? new Date(m.publishedDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : `${year} Edition`,
+        issueNumber: '', // assigned below sequentially per year
+        monthYear,
         year,
-        title: mainTitle,
-        subtitle: subTitle,
-        category,
+        title: issueTitle,
+        subtitle,
+        leaderName: leaderName || m.keywords || undefined,
+        editionTag: m.editionTag || `${year} EDITION`,
+        category: primaryCategory,
+        categories,
         imageUrl: m.imageUrl || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop',
         slug: m.slug || `magazine-${idx}`,
-        description: m.description,
+        description: m.description || m.subtitle || `${issueTitle} — Exclusive edition honoring visionary business leaders shaping their industries.`,
         issuuLink: m.issuuLink,
         isSanity: true,
       }
     })
 
-    // Combine: Keep 2026 reference issues, and use Sanity issues for 2025 and 2024
-    const sanity2025 = mappedSanity.filter((i) => i.year === 2025)
-    const sanity2024 = mappedSanity.filter((i) => i.year === 2024)
-    const ref2026 = DEFAULT_MAGAZINE_ISSUES.filter((i) => i.year === 2026)
+    // Group issues by year and assign sequential issue numbers (ISSUE 01, ISSUE 02, etc.)
+    const yearsPresent = Array.from(new Set(mappedSanity.map((i) => i.year))).sort((a, b) => b - a)
+    const result: MagazineIssue[] = []
 
-    // Blend: If Sanity has items for a year, use Sanity items + supplemental reference items as needed
-    const blended2025 = sanity2025.length > 0 ? [...sanity2025, ...DEFAULT_MAGAZINE_ISSUES.filter((i) => i.year === 2025).slice(sanity2025.length)] : DEFAULT_MAGAZINE_ISSUES.filter((i) => i.year === 2025)
-    const blended2024 = sanity2024.length > 0 ? [...sanity2024] : DEFAULT_MAGAZINE_ISSUES.filter((i) => i.year === 2024)
+    for (const y of yearsPresent) {
+      const issuesForYear = mappedSanity.filter((i) => i.year === y)
+      issuesForYear.forEach((issue, idx) => {
+        issue.issueNumber = `ISSUE ${String(idx + 1).padStart(2, '0')}`
+        result.push(issue)
+      })
+    }
 
-    return [...ref2026, ...blended2025, ...blended2024]
+    return result
   })()
 
   // Filter issues based on category
   const filteredIssues = selectedCategory === 'ALL ISSUES'
     ? allIssues
-    : allIssues.filter((issue) => issue.category.toUpperCase() === selectedCategory.toUpperCase())
+    : allIssues.filter((issue) => 
+        issue.categories?.includes(selectedCategory) ||
+        issue.category.toUpperCase() === selectedCategory.toUpperCase()
+      )
 
-  const years = [2026, 2025, 2024]
+  // Dynamic years list from issues
+  const years = Array.from(new Set(filteredIssues.map((i) => i.year))).sort((a, b) => b - a)
 
   const scrollToYear = (year: number) => {
     const el = document.getElementById(`year-section-${year}`)
@@ -342,24 +396,24 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
                     </button>
                   </div>
 
-                  {/* 4-Column Magazine Grid */}
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-5 sm:gap-6 lg:gap-6">
+                  {/* 3-Column Magazine Grid with Generous Width */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-8">
                     {yearIssues.map((issue) => (
                       <div
                         key={issue.id}
                         className="group flex flex-col cursor-pointer"
                         onClick={() => setSelectedIssue(issue)}
                       >
-                        {/* Magazine Cover Container (Aspect Ratio 3:4.4) */}
-                        <div className="relative aspect-[3/4.4] w-full bg-[#1A1A1E] rounded-xs overflow-hidden shadow-xs group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1 border border-neutral-200">
+                        {/* Magazine Cover Container (Standard Magazine Ratio 3:4) */}
+                        <div className="relative aspect-[3/4] w-full bg-[#1A1A1E] rounded-xs overflow-hidden shadow-xs group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1 border border-neutral-200">
                           
                           {/* Background Artwork */}
                           <Image
                             src={issue.imageUrl}
                             alt={issue.title}
                             fill
-                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
-                            className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover object-center"
                           />
 
                           {/* If not a pre-designed Sanity cover, render high-contrast typography overlay */}
@@ -417,12 +471,17 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
                         </div>
 
                         {/* Below Cover Metadata */}
-                        <div className="mt-3 text-left">
-                          <p className="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.14em] text-[#141416]">
-                            {issue.issueNumber}
-                          </p>
-                          <p className="text-xs text-[#6E6E73] font-sans">
-                            {issue.monthYear}
+                        <div className="mt-3 text-left space-y-1">
+                          <div className="flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-sans font-bold uppercase tracking-[0.14em] text-[#8C6D3B]">
+                            <span>{issue.issueNumber}</span>
+                            <span>&bull;</span>
+                            <span>{issue.monthYear}</span>
+                          </div>
+                          <h4 className="font-serif text-sm sm:text-[15px] font-medium text-[#141416] leading-snug line-clamp-1 group-hover:text-[#8C6D3B] transition-colors">
+                            {issue.leaderName ? issue.leaderName : issue.title}
+                          </h4>
+                          <p className="text-[11px] sm:text-xs text-[#6E6E73] font-sans line-clamp-1">
+                            {issue.leaderName ? issue.title : (issue.subtitle || issue.description)}
                           </p>
                         </div>
                       </div>
@@ -569,12 +628,12 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
               {/* Cover */}
               <div className="sm:col-span-5 flex justify-center">
-                <div className="relative w-48 aspect-[3/4.2] bg-neutral-900 shadow-xl border border-neutral-300 overflow-hidden">
+                <div className="relative w-52 sm:w-56 aspect-[3/4] bg-neutral-900 shadow-xl border border-neutral-300 overflow-hidden">
                   <Image
                     src={selectedIssue.imageUrl}
                     alt={selectedIssue.title}
                     fill
-                    sizes="200px"
+                    sizes="240px"
                     className="object-cover"
                   />
                   {!selectedIssue.isSanity && (
@@ -594,7 +653,12 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
                     <span>&bull;</span>
                     <span>{selectedIssue.monthYear}</span>
                   </div>
-                  <h3 className="font-serif text-2xl uppercase text-neutral-900 leading-tight">
+                  {selectedIssue.leaderName && (
+                    <span className="text-xs font-sans font-bold uppercase tracking-[0.16em] text-[#A67C52] block mb-1">
+                      {selectedIssue.leaderName}
+                    </span>
+                  )}
+                  <h3 className="font-serif text-xl sm:text-2xl uppercase text-neutral-900 leading-tight">
                     {selectedIssue.title}
                   </h3>
                   <p className="font-editorial-italic text-sm text-neutral-600 mt-1">

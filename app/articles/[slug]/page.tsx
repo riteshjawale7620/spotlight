@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Clock, Calendar, Share2, Bookmark } from 'lucide-react'
+import { PortableText } from 'next-sanity'
 import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
 import { getArticleBySlug } from '@/lib/services/contentService'
@@ -14,13 +15,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const article = await getArticleBySlug(slug)
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBFBFA]">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
 
       <main className="flex-1 py-10 lg:py-16">
         <article className="max-w-[1000px] mx-auto px-4 sm:px-6">
           {/* Back link & Category */}
-          <div className="flex items-center justify-between pb-6 mb-8 border-b border-[#E8E8E2]">
+          <div className="flex items-center justify-between pb-6 mb-8 border-b border-neutral-200">
             <Link
               href="/"
               className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-neutral-500 hover:text-black transition-colors"
@@ -82,7 +83,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Featured Image */}
           {article.imageUrl && (
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900 mb-12 shadow-md">
+            <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-900 mb-12 shadow-md">
               <Image
                 src={article.imageUrl}
                 alt={article.title}
@@ -96,25 +97,26 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Body Content */}
           <div className="max-w-2xl mx-auto font-serif text-neutral-800 text-lg leading-relaxed space-y-6">
-            <p className="first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-[#A67C52]">
-              {article.excerpt ||
-                'In an epoch marked by unprecedented economic restructuring and systemic transformation, executive decision-makers are discarding twentieth-century playbooks.'}
-            </p>
-
-            <p>
-              Capital allocators, institutional investors, and startup founders are converging around a new paradigm—one where technological sovereignty, regenerative practices, and operational resilience outweigh speculative acceleration.
-            </p>
-
-            <blockquote className="border-l-2 border-[#A67C52] pl-6 py-2 my-8 font-editorial-italic text-2xl text-neutral-900 font-light">
-              &ldquo;The true currency of next-generation enterprise is not simply throughput, but the structural integrity of its enduring purpose.&rdquo;
-            </blockquote>
-
-            <p>
-              As the global business ecosystem navigates shifting geopolitical corridors and the ubiquitous integration of algorithmic intelligence, the leaders who thrive will be those who construct decentralized resilience into their corporate DNA.
-            </p>
+            {Array.isArray(article.body) && article.body.length > 0 ? (
+              <div className="space-y-6">
+                <PortableText value={article.body} />
+              </div>
+            ) : typeof article.body === 'string' ? (
+              <p>{article.body}</p>
+            ) : (
+              <>
+                <p className="first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-[#A67C52]">
+                  {article.excerpt ||
+                    'In an epoch marked by unprecedented economic restructuring and systemic transformation, executive decision-makers are discarding twentieth-century playbooks.'}
+                </p>
+                <p>
+                  Capital allocators, institutional investors, and startup founders are converging around a new paradigm—one where technological sovereignty, regenerative practices, and operational resilience outweigh speculative acceleration.
+                </p>
+              </>
+            )}
 
             {/* Social Share & Actions */}
-            <div className="pt-10 mt-10 border-t border-[#E8E8E2] flex items-center justify-between text-xs text-neutral-500 font-sans">
+            <div className="pt-10 mt-10 border-t border-neutral-200 flex items-center justify-between text-xs text-neutral-500 font-sans">
               <div className="flex items-center gap-3">
                 <button className="flex items-center gap-1.5 px-3 py-1.5 border border-neutral-300 hover:border-black transition-colors">
                   <Share2 className="w-3.5 h-3.5" />

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FBFBFA;
+  --background: #FFFFFF;
   --foreground: #141416;
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-display: var(--font-cormorant), Georgia, serif;
@@ -13,7 +13,7 @@
   --gold-light: #F4EEDF;
   --charcoal-black: #0E0E10;
   --charcoal-card: #151518;
-  --editorial-border: #E8E8E2;
+  --editorial-border: #EAEAEA;
 }
 
 @theme {

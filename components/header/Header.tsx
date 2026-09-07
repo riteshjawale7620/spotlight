@@ -14,8 +14,7 @@ const NAV_LINKS = [
   { label: 'LEADERS', href: '/leaders' },
   { label: 'INDUSTRIES', href: '/industries' },
   { label: 'INSIGHTS', href: '/insights' },
-  { label: 'NEWS', href: '/category/news' },
-  { label: 'CULTURE', href: '/category/culture' },
+  { label: 'NEWS', href: '/news' },
   { label: 'MAGAZINE', href: '/magazine' },
 ]
 

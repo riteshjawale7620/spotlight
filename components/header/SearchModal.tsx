@@ -25,7 +25,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 backdrop-blur-sm pt-12 sm:pt-20 px-3 sm:px-4 transition-opacity">
-      <div className="relative w-full max-w-2xl bg-white border border-[#E8E8E2] shadow-2xl p-5 sm:p-8 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-white border border-neutral-200 shadow-2xl p-5 sm:p-8 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
           className="absolute top-6 right-6 p-2 text-neutral-400 hover:text-black transition-colors"
@@ -55,7 +55,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
               <button
                 key={item}
                 onClick={() => setQuery(item)}
-                className="px-3 py-1.5 text-xs bg-[#F7F7F5] hover:bg-[#EAEAE6] text-neutral-700 transition-colors border border-[#E8E8E2]"
+                className="px-3 py-1.5 text-xs bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors border border-neutral-200"
               >
                 {item}
               </button>
@@ -64,12 +64,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         </div>
 
         {query && (
-          <div className="mt-6 pt-4 border-t border-[#E8E8E2]">
+          <div className="mt-6 pt-4 border-t border-neutral-200">
             <p className="text-xs text-neutral-500 mb-2">Search Results for &ldquo;{query}&rdquo;</p>
             <Link
               href={`/articles/architects-of-tomorrow`}
               onClick={onClose}
-              className="flex items-center justify-between p-2.5 hover:bg-[#F7F7F5] group transition-colors"
+              className="flex items-center justify-between p-2.5 hover:bg-neutral-50 group transition-colors"
             >
               <div>
                 <span className="text-xs font-semibold text-[#A67C52] uppercase tracking-wider">Leadership</span>

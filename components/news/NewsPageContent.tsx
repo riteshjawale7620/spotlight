@@ -190,14 +190,14 @@ export default function NewsPageContent() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBFBFA]">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
 
       <main className="flex-1">
         {/* ========================================================= */}
         {/* 1. HERO SECTION: LATEST NEWS / Real Stories. Global Impact */}
         {/* ========================================================= */}
-        <section className="relative w-full border-b border-[#E2DDD5] bg-[#F4EFE6]/40 overflow-hidden">
+        <section className="relative w-full border-b border-neutral-200 bg-neutral-50/50 overflow-hidden">
           <div className="relative max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
             {/* Background architectural photo with subtle fade */}
             <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[58%] z-0 pointer-events-none opacity-25 lg:opacity-90 overflow-hidden">
@@ -209,8 +209,8 @@ export default function NewsPageContent() {
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover object-[center_28%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#FBFBFA] via-[#FBFBFA]/75 to-transparent hidden lg:block" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#FBFBFA] via-transparent to-transparent lg:hidden" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/75 to-transparent hidden lg:block" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
             </div>
 
             {/* Content Container */}
@@ -231,7 +231,7 @@ export default function NewsPageContent() {
                 </p>
 
                 {/* Metric Counters (500+ DAILY STORIES, 50+ INDUSTRIES, 100+ COUNTRIES) */}
-                <div className="pt-4 flex items-center gap-6 sm:gap-12 border-t border-[#E2DDD5]/80">
+                <div className="pt-4 flex items-center gap-6 sm:gap-12 border-t border-neutral-200">
                   <div>
                     <span className="font-serif text-2xl sm:text-3xl font-bold text-[#141416] block leading-none">
                       500+
@@ -241,7 +241,7 @@ export default function NewsPageContent() {
                     </span>
                   </div>
 
-                  <div className="h-8 w-[1px] bg-[#DDD7CD]" />
+                  <div className="h-8 w-[1px] bg-neutral-200" />
 
                   <div>
                     <span className="font-serif text-2xl sm:text-3xl font-bold text-[#141416] block leading-none">
@@ -252,7 +252,7 @@ export default function NewsPageContent() {
                     </span>
                   </div>
 
-                  <div className="h-8 w-[1px] bg-[#DDD7CD]" />
+                  <div className="h-8 w-[1px] bg-neutral-200" />
 
                   <div>
                     <span className="font-serif text-2xl sm:text-3xl font-bold text-[#141416] block leading-none">
@@ -304,7 +304,7 @@ export default function NewsPageContent() {
         {/* ========================================================= */}
         {/* 2. TOPIC FILTER PILLS BAR */}
         {/* ========================================================= */}
-        <div className="w-full bg-white border-b border-[#E2DDD5] sticky top-[58px] md:top-[68px] z-30 shadow-xs">
+        <div className="w-full bg-white border-b border-neutral-200 sticky top-[58px] md:top-[68px] z-30 shadow-xs">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
             {/* Scrollable Pills Container */}
             <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5">
@@ -317,7 +317,7 @@ export default function NewsPageContent() {
                     className={`px-3 sm:px-3.5 py-1.5 text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.14em] uppercase rounded-none transition-all whitespace-nowrap shrink-0 ${
                       isActive
                         ? 'bg-[#8D682E] text-white shadow-xs'
-                        : 'bg-[#F4EFE6]/70 text-neutral-700 hover:bg-[#EAE4D7] hover:text-black'
+                        : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 hover:text-black'
                     }`}
                   >
                     {topic}
@@ -337,7 +337,7 @@ export default function NewsPageContent() {
         {/* ========================================================= */}
         {/* 3. FEATURED NEWS GRID: Main Feature + 2 Stacked + Sidebar */}
         {/* ========================================================= */}
-        <section className="w-full py-10 sm:py-14 border-b border-[#E2DDD5] bg-[#FBFBFA]">
+        <section className="w-full py-10 sm:py-14 border-b border-neutral-200 bg-white">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
               
@@ -352,7 +352,7 @@ export default function NewsPageContent() {
                       fill
                       priority
                       sizes="(max-width: 1024px) 100vw, 42vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                     <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-xs px-2.5 py-1 text-white font-mono text-[10px] tracking-wider border border-white/20">
@@ -391,15 +391,15 @@ export default function NewsPageContent() {
               {/* Center Column (2 Stacked Stories) - 4 Cols */}
               <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-6 lg:space-y-0">
                 {/* Top Stacked Story */}
-                <article className="group flex flex-col justify-between pb-6 lg:pb-8 border-b border-[#E8E3DA]">
+                <article className="group flex flex-col justify-between pb-6 lg:pb-8 border-b border-neutral-200">
                   <div>
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900 mb-3.5 shadow-xs">
+                    <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-900 mb-3.5 shadow-xs">
                       <Image
                         src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1000&auto=format&fit=crop"
                         alt="Clean Energy Wind Turbines"
                         fill
                         sizes="(max-width: 1024px) 100vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover"
                       />
                     </div>
 
@@ -434,13 +434,13 @@ export default function NewsPageContent() {
                 {/* Bottom Stacked Story */}
                 <article className="group flex flex-col justify-between pt-6 lg:pt-8">
                   <div>
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900 mb-3.5 shadow-xs">
+                    <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-900 mb-3.5 shadow-xs">
                       <Image
                         src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1000&auto=format&fit=crop"
                         alt="Biotechnology Therapy"
                         fill
                         sizes="(max-width: 1024px) 100vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover"
                       />
                     </div>
 
@@ -474,9 +474,9 @@ export default function NewsPageContent() {
               </div>
 
               {/* Right Column (Sidebar: The News Brief + Trending Now + Magazine Ad) - 3 Cols */}
-              <div className="lg:col-span-3 space-y-8 lg:border-l lg:border-[#E8E3DA] lg:pl-8">
+              <div className="lg:col-span-3 space-y-8 lg:border-l lg:border-neutral-200 lg:pl-8">
                 {/* 1. The News Brief Newsletter Signup */}
-                <div className="bg-[#FAF8F5] border border-[#E2DDD5] p-5 shadow-xs">
+                <div className="bg-neutral-50 border border-neutral-200 p-5 shadow-xs">
                   <h4 className="font-serif text-sm uppercase tracking-[0.16em] text-[#121214] font-semibold">
                     THE NEWS BRIEF
                   </h4>
@@ -497,7 +497,7 @@ export default function NewsPageContent() {
                         value={briefEmail}
                         onChange={(e) => setBriefEmail(e.target.value)}
                         placeholder="Enter your email address"
-                        className="w-full bg-white border border-[#DDD7CD] px-3 py-2 text-xs text-neutral-800 placeholder:text-neutral-400 outline-none focus:border-[#A67C52]"
+                        className="w-full bg-white border border-neutral-200 px-3 py-2 text-xs text-neutral-800 placeholder:text-neutral-400 outline-none focus:border-[#A67C52]"
                       />
                       <button
                         type="submit"
@@ -512,11 +512,11 @@ export default function NewsPageContent() {
 
                 {/* 2. Trending Now Numbered List */}
                 <div className="space-y-4">
-                  <h4 className="font-serif text-xs uppercase tracking-[0.2em] text-[#121214] font-bold pb-2 border-b border-[#E2DDD5]">
+                  <h4 className="font-serif text-xs uppercase tracking-[0.2em] text-[#121214] font-bold pb-2 border-b border-neutral-200">
                     TRENDING NOW
                   </h4>
 
-                  <div className="divide-y divide-[#EDE8E0]">
+                  <div className="divide-y divide-neutral-200">
                     {TRENDING_STORIES.map((story) => (
                       <article key={story.rank} className="py-3 first:pt-0 last:pb-0 flex items-start gap-3.5 group">
                         <span className="font-serif text-base text-[#C5A059] font-medium leading-none shrink-0 pt-0.5">
@@ -537,37 +537,25 @@ export default function NewsPageContent() {
 
                 {/* 3. Magazine Cover Promotion Card */}
                 <div className="bg-[#0E0E10] text-white p-5 border border-[#2B2B30] shadow-md flex flex-col items-center text-center">
-                  <div className="relative w-28 aspect-[3/4] bg-neutral-800 border border-neutral-700 shadow-xl overflow-hidden mb-4">
+                  <Link href="/magazine" className="relative w-28 aspect-[3/4] bg-neutral-800 border border-neutral-700 shadow-xl overflow-hidden mb-4 block group">
                     <Image
-                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop"
+                      src="https://cdn.sanity.io/images/75rd7yks/production/642213a9c30cd1497c2494ffb7a2d862e970fd66-2400x3150.jpg"
                       alt="The Spotlight Leaders Magazine Issue"
                       fill
                       sizes="120px"
                       className="object-cover"
                     />
-                    <div className="absolute inset-x-0 top-2 text-center flex items-center justify-center gap-1.5 px-2">
-                      <Image
-                        src="/logo/emblem.png"
-                        alt="Spotlight Emblem"
-                        width={1275}
-                        height={1234}
-                        className="w-3.5 h-3.5 object-contain"
-                      />
-                      <span className="font-serif text-[7.5px] uppercase tracking-[0.16em] text-white/90 font-bold block">
-                        THE SPOTLIGHT LEADERS
-                      </span>
-                    </div>
-                  </div>
+                  </Link>
 
                   <span className="font-serif text-xs uppercase tracking-[0.18em] text-[#C5A059] font-bold block">
                     THE LATEST ISSUE OUT NOW
                   </span>
 
                   <Link
-                    href="/issues/september-2026"
+                    href="/magazine"
                     className="mt-3.5 inline-flex items-center gap-1.5 px-4 py-2 bg-[#A67C52] hover:bg-[#8D682E] text-white text-[10px] font-sans font-bold uppercase tracking-[0.18em] transition-colors shadow-xs"
                   >
-                    <span>EXPLORE ISSUE 09</span>
+                    <span>BROWSE ALL ISSUES</span>
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
@@ -581,14 +569,14 @@ export default function NewsPageContent() {
         {/* ========================================================= */}
         {/* 4. LATEST NEWS 8-CARD GRID (4x2 Grid) */}
         {/* ========================================================= */}
-        <section className="w-full py-10 sm:py-14 border-b border-[#E2DDD5] bg-[#FBFBFA]">
+        <section className="w-full py-10 sm:py-14 border-b border-neutral-200 bg-white">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
             <div className="flex items-center gap-4 sm:gap-6 mb-8 sm:mb-10">
               <h2 className="font-serif text-lg sm:text-xl uppercase tracking-[0.16em] text-[#121214] font-medium shrink-0">
                 LATEST NEWS
               </h2>
-              <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+              <div className="flex-1 h-[1px] bg-neutral-200" />
               <Link
                 href="/category/news"
                 className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#A67C52] transition-colors shrink-0 group"
@@ -603,13 +591,13 @@ export default function NewsPageContent() {
               {LATEST_NEWS_ARTICLES.map((article) => (
                 <article key={article.id} className="group flex flex-col justify-between">
                   <div>
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-200 mb-3.5 shadow-xs">
+                    <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-200 mb-3.5 shadow-xs">
                       <Image
                         src={article.imageUrl}
                         alt={article.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover"
                       />
                     </div>
 
@@ -785,7 +773,7 @@ export default function NewsPageContent() {
                   alt="Metropolitan Skyline"
                   fill
                   sizes="(max-width: 1024px) 100vw, 25vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-75"
+                  className="object-cover brightness-75"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-5 flex flex-col justify-end">
                   <p className="font-sans text-xs tracking-[0.16em] uppercase font-semibold text-white/95 leading-relaxed text-center">
@@ -803,16 +791,16 @@ export default function NewsPageContent() {
         {/* ========================================================= */}
         {/* 6. VOICES & PERSPECTIVES (Quotes, Columnists & Editor's Note) */}
         {/* ========================================================= */}
-        <section className="w-full py-10 sm:py-14 border-b border-[#E2DDD5] bg-[#FBFBFA]">
+        <section className="w-full py-10 sm:py-14 border-b border-neutral-200 bg-white">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-serif text-lg sm:text-xl uppercase tracking-[0.16em] text-[#121214] font-medium mb-8 sm:mb-10 pb-3 border-b border-[#E2DDD5]">
+            <h2 className="font-serif text-lg sm:text-xl uppercase tracking-[0.16em] text-[#121214] font-medium mb-8 sm:mb-10 pb-3 border-b border-neutral-200">
               VOICES &amp; PERSPECTIVES
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
               
               {/* Left Column: Featured Voice Quote + Executive Portrait - 5 Cols */}
-              <div className="lg:col-span-5 bg-[#FAF8F5] border border-[#E2DDD5] p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-xs">
+              <div className="lg:col-span-5 bg-neutral-50 border border-neutral-200 p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-xs">
                 {/* Quote details */}
                 <div className="flex-1 space-y-4">
                   <span className="font-serif text-3xl text-[#8D682E] leading-none block">
@@ -821,7 +809,7 @@ export default function NewsPageContent() {
                   <p className="font-editorial-italic text-lg sm:text-xl text-[#141416] leading-snug font-light">
                     True progress comes when business serves people, not just profits.&rdquo;
                   </p>
-                  <div className="pt-3 border-t border-[#DDD7CD]">
+                  <div className="pt-3 border-t border-neutral-200">
                     <span className="text-xs uppercase tracking-widest text-neutral-900 font-bold block">
                       KATHERINE COLOMBINI
                     </span>
@@ -832,7 +820,7 @@ export default function NewsPageContent() {
                 </div>
 
                 {/* Portrait */}
-                <div className="relative w-32 h-44 sm:w-36 sm:h-48 overflow-hidden bg-neutral-200 shrink-0 shadow-sm border border-[#DDD7CD]">
+                <div className="relative w-32 h-44 sm:w-36 sm:h-48 overflow-hidden bg-neutral-200 shrink-0 shadow-sm border border-neutral-200">
                   <Image
                     src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop"
                     alt="Katherine Colombini"
@@ -844,10 +832,10 @@ export default function NewsPageContent() {
               </div>
 
               {/* Middle Column: 4 Thought Leadership Essays with Avatars - 4 Cols */}
-              <div className="lg:col-span-4 flex flex-col justify-between divide-y divide-[#EDE8E0] border-t lg:border-t-0 pt-6 lg:pt-0">
+              <div className="lg:col-span-4 flex flex-col justify-between divide-y divide-neutral-200 border-t lg:border-t-0 pt-6 lg:pt-0">
                 {VOICES_ESSAYS.map((essay) => (
                   <article key={essay.author} className="py-3 first:pt-0 last:pb-0 flex items-center gap-3.5 group">
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-neutral-200 shrink-0 border border-[#DDD7CD]">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-neutral-200 shrink-0 border border-neutral-200">
                       <Image
                         src={essay.avatarUrl}
                         alt={essay.author}
@@ -920,7 +908,7 @@ export default function NewsPageContent() {
         {/* ========================================================= */}
         {/* 7. INDUSTRY SPOTLIGHT (6 Photo Sectors) */}
         {/* ========================================================= */}
-        <section className="w-full py-10 sm:py-14 border-b border-[#E2DDD5] bg-[#FBFBFA]">
+        <section className="w-full py-10 sm:py-14 border-b border-neutral-200 bg-white">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
               {/* Left Column: Heading, Subtitle & Button - 3 Cols */}
@@ -950,13 +938,13 @@ export default function NewsPageContent() {
                     href={`/category/${item.slug}`}
                     className="group flex flex-col items-center text-center"
                   >
-                    <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900 shadow-xs border border-[#DDD7CD]">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900 shadow-xs border border-neutral-200">
                       <Image
                         src={item.imageUrl}
                         alt={item.name}
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-                        className="object-cover group-hover:scale-110 transition-transform duration-500 brightness-90"
+                        className="object-cover brightness-90"
                       />
                     </div>
                     <span className="font-serif text-[11px] font-bold tracking-wider text-neutral-800 uppercase mt-2.5 group-hover:text-[#A67C52] transition-colors">
@@ -972,7 +960,7 @@ export default function NewsPageContent() {
         {/* ========================================================= */}
         {/* 8. STAY AHEAD & EDITORIAL QUOTE BANNER */}
         {/* ========================================================= */}
-        <section className="w-full bg-[#FAF8F5] border-b border-[#E2DDD5] py-10 sm:py-14 overflow-hidden">
+        <section className="w-full bg-neutral-50 border-b border-neutral-200 py-10 sm:py-14 overflow-hidden">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               
@@ -984,7 +972,7 @@ export default function NewsPageContent() {
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
                   <div className="space-y-2 text-center">
-                    <div className="w-10 h-10 rounded-full bg-white border border-[#DDD7CD] flex items-center justify-center mx-auto text-[#8D682E] shadow-xs">
+                    <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center mx-auto text-[#8D682E] shadow-xs">
                       <Newspaper className="w-4 h-4 stroke-[1.6]" />
                     </div>
                     <span className="text-[11px] font-sans font-medium text-neutral-800 block">
@@ -993,7 +981,7 @@ export default function NewsPageContent() {
                   </div>
 
                   <div className="space-y-2 text-center">
-                    <div className="w-10 h-10 rounded-full bg-white border border-[#DDD7CD] flex items-center justify-center mx-auto text-[#8D682E] shadow-xs">
+                    <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center mx-auto text-[#8D682E] shadow-xs">
                       <UserCheck className="w-4 h-4 stroke-[1.6]" />
                     </div>
                     <span className="text-[11px] font-sans font-medium text-neutral-800 block">
@@ -1002,7 +990,7 @@ export default function NewsPageContent() {
                   </div>
 
                   <div className="space-y-2 text-center">
-                    <div className="w-10 h-10 rounded-full bg-white border border-[#DDD7CD] flex items-center justify-center mx-auto text-[#8D682E] shadow-xs">
+                    <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center mx-auto text-[#8D682E] shadow-xs">
                       <Globe2 className="w-4 h-4 stroke-[1.6]" />
                     </div>
                     <span className="text-[11px] font-sans font-medium text-neutral-800 block">
@@ -1011,7 +999,7 @@ export default function NewsPageContent() {
                   </div>
 
                   <div className="space-y-2 text-center">
-                    <div className="w-10 h-10 rounded-full bg-white border border-[#DDD7CD] flex items-center justify-center mx-auto text-[#8D682E] shadow-xs">
+                    <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center mx-auto text-[#8D682E] shadow-xs">
                       <BookmarkCheck className="w-4 h-4 stroke-[1.6]" />
                     </div>
                     <span className="text-[11px] font-sans font-medium text-neutral-800 block">
@@ -1022,7 +1010,7 @@ export default function NewsPageContent() {
               </div>
 
               {/* Right Column: Editorial Quote with Notebook Flatlay - 7 Cols */}
-              <div className="lg:col-span-7 relative aspect-[16/7] sm:aspect-[16/6] overflow-hidden border border-[#DDD7CD] shadow-sm flex items-center justify-between p-6 sm:p-10">
+              <div className="lg:col-span-7 relative aspect-[16/7] sm:aspect-[16/6] overflow-hidden border border-neutral-200 shadow-sm flex items-center justify-between p-6 sm:p-10">
                 <Image
                   src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop"
                   alt="Editorial Notebook and Coffee"
@@ -1030,7 +1018,7 @@ export default function NewsPageContent() {
                   sizes="(max-width: 1024px) 100vw, 55vw"
                   className="object-cover brightness-[0.88]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FBFBFA]/95 via-[#FBFBFA]/85 to-transparent/40" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-transparent/40" />
 
                 <div className="relative z-10 max-w-md space-y-2.5">
                   <span className="font-serif text-2xl text-[#8D682E] leading-none block">

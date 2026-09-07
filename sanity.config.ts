@@ -33,6 +33,9 @@ export default defineConfig({
             S.listItem()
               .title('Industries & Categories')
               .child(S.documentTypeList('category').title('Industries')),
+            S.listItem()
+              .title('Executive Leaders')
+              .child(S.documentTypeList('webprofile').title('Leader Profiles (Web Profiles)')),
             S.divider(),
             S.listItem()
               .title('The Spotlight Talks (Podcasts)')

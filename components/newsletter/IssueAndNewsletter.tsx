@@ -5,10 +5,58 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
 
-export default function IssueAndNewsletter() {
+interface IssueAndNewsletterProps {
+  magazine?: {
+    _id?: string
+    title?: string
+    subtitle?: string
+    editionTag?: string
+    publishedDate?: string
+    imageUrl?: string
+    issuuLink?: string
+    slug?: string
+    description?: string
+  } | null
+}
+
+const DEFAULT_LATEST_MAGAZINE = {
+  title: 'Manuel Rendon_2026’s Most Influential Business Leaders Transforming the Chemical Industry',
+  slug: 'manuel-rendon-chemical-industry-2026',
+  editionTag: '2026 EDITION',
+  publishedDate: '2026-03-01',
+  imageUrl: 'https://cdn.sanity.io/images/75rd7yks/production/642213a9c30cd1497c2494ffb7a2d862e970fd66-2400x3150.jpg',
+  issuuLink: 'https://issuu.com/thespotlightleaders/docs/manuel_rendon',
+  description: 'The stories that matter. The insights that inspire.',
+}
+
+export default function IssueAndNewsletter({ magazine }: IssueAndNewsletterProps) {
   const [email, setEmail] = useState('')
   const [agreed, setAgreed] = useState(false)
   const [subscribed, setSubscribed] = useState(false)
+
+  const issueData = magazine?.title ? magazine : DEFAULT_LATEST_MAGAZINE
+  const title = (issueData.title || '').trim()
+  let leaderName = ''
+  let issueTitle = title
+
+  if (title.includes('_')) {
+    const parts = title.split('_')
+    leaderName = parts[0].trim()
+    issueTitle = parts.slice(1).join('_').trim()
+  } else if (title.includes(' - ')) {
+    const parts = title.split(' - ')
+    leaderName = parts[0].trim()
+    issueTitle = parts.slice(1).join(' - ').trim()
+  }
+
+  const editionLabel =
+    issueData.editionTag ||
+    (issueData.publishedDate
+      ? new Date(issueData.publishedDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+      : '2026 EDITION')
+
+  const href = issueData.issuuLink || '/magazine'
+  const isExternal = Boolean(issueData.issuuLink)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -22,24 +70,26 @@ export default function IssueAndNewsletter() {
   }
 
   return (
-    <section className="w-full bg-[#ECECE8] border-b border-[#E2DDD5] py-9 sm:py-14 lg:py-18">
+    <section className="w-full bg-neutral-50 border-b border-neutral-200 py-9 sm:py-14 lg:py-18">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left: CURRENT ISSUE (4 cols) */}
-          <div className="lg:col-span-4 flex items-center justify-between gap-6 border-b lg:border-b-0 lg:border-r border-neutral-300 pb-8 lg:pb-0 lg:pr-8">
+          <div className="lg:col-span-4 flex items-center justify-between gap-6 border-b lg:border-b-0 lg:border-r border-neutral-200 pb-8 lg:pb-0 lg:pr-8">
             <div className="space-y-2 max-w-[200px]">
               <span className="font-serif text-xs uppercase tracking-[0.22em] text-[#121214] font-semibold block">
                 Current Issue
               </span>
-              <span className="text-[10.5px] uppercase tracking-[0.2em] text-neutral-500 font-medium block">
-                September 2026
+              <span className="text-[10.5px] uppercase tracking-[0.2em] text-[#8C6339] font-semibold block">
+                {editionLabel}
               </span>
-              <p className="font-editorial-italic text-sm text-neutral-600 leading-snug pt-1">
-                The stories that matter. The insights that inspire.
+              <p className="font-editorial-italic text-sm text-neutral-600 leading-snug pt-1 line-clamp-2">
+                {issueTitle || 'The stories that matter. The insights that inspire.'}
               </p>
               <div className="pt-3">
                 <Link
-                  href="/issues/september-2026"
+                  href={href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#A67C52] hover:text-[#7E5933] transition-colors group"
                 >
                   <span>Explore Issue</span>
@@ -49,20 +99,27 @@ export default function IssueAndNewsletter() {
             </div>
 
             {/* Issue Mini Mockup */}
-            <div className="relative w-28 sm:w-32 aspect-[3/4] bg-black shadow-lg overflow-hidden border border-neutral-400/40 shrink-0">
+            <Link
+              href={href}
+              target={isExternal ? '_blank' : undefined}
+              rel={isExternal ? 'noopener noreferrer' : undefined}
+              className="relative w-28 sm:w-32 aspect-[3/4] bg-neutral-900 shadow-xl overflow-hidden border border-neutral-300 shrink-0 block group"
+            >
               <Image
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop"
-                alt="September Issue"
+                src={issueData.imageUrl || 'https://cdn.sanity.io/images/75rd7yks/production/642213a9c30cd1497c2494ffb7a2d862e970fd66-2400x3150.jpg'}
+                alt={issueTitle || 'Current Issue'}
                 fill
                 sizes="130px"
                 className="object-cover"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-black/80 p-1.5 text-center">
-                <span className="text-[8px] tracking-widest text-[#C5A059] uppercase font-bold block">
-                  Christina Rahm
-                </span>
-              </div>
-            </div>
+              {leaderName && (
+                <div className="absolute inset-x-0 bottom-0 bg-black/85 backdrop-blur-xs p-1.5 text-center">
+                  <span className="text-[8px] tracking-widest text-[#C5A059] uppercase font-bold block truncate px-1">
+                    {leaderName}
+                  </span>
+                </div>
+              )}
+            </Link>
           </div>
 
           {/* Right: THE WEEK IN BUSINESS (8 cols) */}

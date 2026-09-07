@@ -52,7 +52,7 @@ export default function HeroSection({ initialLead, railItems }: HeroSectionProps
   const currentItem = railItems[activeIndex] || initialLead
 
   return (
-    <section className="w-full bg-[#FBFBFA] border-b border-[#E2DDD5] overflow-hidden lg:h-[calc(100vh-110px)]">
+    <section className="w-full bg-white border-b border-neutral-200 overflow-hidden lg:h-[calc(100vh-110px)]">
       {/* 100% Full-Bleed Container - No max-width, no outer margins */}
       <div className="w-full h-full flex flex-col lg:flex-row items-stretch">
         {/* Left Column: Full-width background image with zero gap (~75% on desktop) */}
@@ -68,7 +68,7 @@ export default function HeroSection({ initialLead, railItems }: HeroSectionProps
               className="object-cover object-[78%_center] lg:object-[82%_center] transition-all duration-700"
             />
             {/* Atmospheric gradient: Bottom-to-top on mobile with transparent top, Left-to-right on desktop */}
-            <div className="absolute inset-0 w-full sm:w-[55%] lg:w-[42%] bg-gradient-to-t from-[#FBFBFA] via-[#FBFBFA]/85 via-50% to-transparent sm:bg-gradient-to-r sm:from-[#FBFBFA]/90 sm:via-[#FBFBFA]/40 sm:to-transparent pointer-events-none" />
+            <div className="absolute inset-0 w-full sm:w-[55%] lg:w-[42%] bg-gradient-to-t from-white via-white/85 via-50% to-transparent sm:bg-gradient-to-r sm:from-white/90 sm:via-white/40 sm:to-transparent pointer-events-none" />
           </div>
 
           {/* Main Editorial Typography */}
@@ -143,9 +143,9 @@ export default function HeroSection({ initialLead, railItems }: HeroSectionProps
         </div>
 
         {/* Right Column: Mobile Swipeable Strip (< lg) + Desktop 01-05 Stories Rail (lg:) */}
-        <div className="w-full lg:w-[25%] xl:w-[24%] bg-[#FAF8F5] border-t lg:border-t-0 lg:border-l border-[#E2DDD5]">
+        <div className="w-full lg:w-[25%] xl:w-[24%] bg-white border-t lg:border-t-0 lg:border-l border-neutral-200">
           {/* Mobile Swipeable Card Rail (< lg) */}
-          <div className="lg:hidden p-3.5 bg-[#FAF8F5]">
+          <div className="lg:hidden p-3.5 bg-white">
             <div className="flex items-center justify-between pb-2 px-1">
               <span className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-[#767676]">
                 Featured Stories
@@ -164,7 +164,7 @@ export default function HeroSection({ initialLead, railItems }: HeroSectionProps
                     className={`shrink-0 w-[230px] snap-start p-3 bg-white border transition-all cursor-pointer ${
                       isActive
                         ? 'border-[#B88E4B] shadow-xs ring-1 ring-[#B88E4B]'
-                        : 'border-[#E2DDD5] opacity-75 hover:opacity-100'
+                        : 'border-neutral-200 opacity-75 hover:opacity-100'
                     }`}
                   >
                     <div className="flex items-start gap-2.5">

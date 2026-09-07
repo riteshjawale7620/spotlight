@@ -22,6 +22,19 @@ export const category = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'type',
+      title: 'Category Scope',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Macro Industry (01-08)', value: 'industry' },
+          { title: 'Editorial Topic / Tag', value: 'topic' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'industry',
+    }),
+    defineField({
       name: 'number',
       title: 'Category Number (e.g. 01, 02)',
       type: 'string',

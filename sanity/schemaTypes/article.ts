@@ -41,10 +41,15 @@ export const article = defineType({
     }),
     defineField({
       name: 'author',
-      title: 'Author',
+      title: 'Author / Featured Leader',
       type: 'reference',
-      to: [{ type: 'author' }],
-      validation: (Rule) => Rule.required(),
+      to: [{ type: 'author' }, { type: 'webprofile' }],
+    }),
+    defineField({
+      name: 'magazine',
+      title: 'Associated Magazine Edition',
+      type: 'reference',
+      to: [{ type: 'magazine' }],
     }),
     defineField({
       name: 'featuredImage',

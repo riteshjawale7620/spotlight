@@ -9,7 +9,7 @@ import { COVER_STORY_DATA, EDITORS_PRIMARY_DATA } from '@/lib/data/mockData'
 
 export default function IssuePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBFBFA]">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
 
       <main className="flex-1 py-12 lg:py-16">
@@ -77,11 +77,11 @@ export default function IssuePage() {
 
           {/* Table of Contents */}
           <div className="max-w-3xl mx-auto space-y-6">
-            <h3 className="font-serif text-xl uppercase tracking-[0.16em] text-neutral-900 font-medium pb-3 border-b border-[#E8E8E2]">
+            <h3 className="font-serif text-xl uppercase tracking-[0.16em] text-neutral-900 font-medium pb-3 border-b border-neutral-200">
               In This Issue
             </h3>
 
-            <div className="divide-y divide-[#E8E8E2]">
+            <div className="divide-y divide-neutral-200">
               {EDITORS_PRIMARY_DATA.map((article, idx) => (
                 <div key={article.id} className="py-4 flex items-start justify-between gap-4 group">
                   <div className="space-y-1">

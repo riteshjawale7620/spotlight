@@ -170,15 +170,15 @@ export default function Footer() {
               </Link>
             </div>
 
-            <div className="relative w-20 aspect-[3/4] bg-[#1a1a1d] border border-neutral-700 overflow-hidden shadow-lg mt-2">
+            <Link href="/magazine" className="relative w-20 aspect-[3/4] bg-[#1a1a1d] border border-neutral-700 overflow-hidden shadow-lg mt-2 block group">
               <Image
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop"
-                alt="Magazine Cover"
+                src="https://cdn.sanity.io/images/75rd7yks/production/642213a9c30cd1497c2494ffb7a2d862e970fd66-2400x3150.jpg"
+                alt="Latest Magazine Cover"
                 fill
                 sizes="80px"
                 className="object-cover"
               />
-            </div>
+            </Link>
           </div>
         </div>
 

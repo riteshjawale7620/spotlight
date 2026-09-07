@@ -15,7 +15,7 @@ export default function EditorialTrio({
   voices,
 }: EditorialTrioProps) {
   return (
-    <section className="w-full bg-[#FBFBFA] border-b border-[#E2DDD5] py-9 sm:py-14 lg:py-18">
+    <section className="w-full bg-white border-b border-neutral-200 py-9 sm:py-14 lg:py-18">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Column 1: LATEST NEWS */}
@@ -24,7 +24,7 @@ export default function EditorialTrio({
               <h3 className="font-serif text-base uppercase tracking-[0.14em] text-[#121214] font-medium shrink-0">
                 Latest News
               </h3>
-              <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+              <div className="flex-1 h-[1px] bg-neutral-200" />
               <Link
                 href="/category/news"
                 className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#A67C52] transition-colors shrink-0"
@@ -34,7 +34,7 @@ export default function EditorialTrio({
               </Link>
             </div>
 
-            <div className="divide-y divide-[#E2DDD5]">
+            <div className="divide-y divide-neutral-200">
               {latestNews.map((news, index) => (
                 <article key={index} className="py-3.5 first:pt-0 last:pb-0 group">
                   <div className="flex items-baseline gap-3">
@@ -61,7 +61,7 @@ export default function EditorialTrio({
               <h3 className="font-serif text-base uppercase tracking-[0.14em] text-[#121214] font-medium shrink-0">
                 Trending This Week
               </h3>
-              <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+              <div className="flex-1 h-[1px] bg-neutral-200" />
               <Link
                 href="/category/trending"
                 className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#A67C52] transition-colors shrink-0"
@@ -71,7 +71,7 @@ export default function EditorialTrio({
               </Link>
             </div>
 
-            <div className="divide-y divide-[#E2DDD5]">
+            <div className="divide-y divide-neutral-200">
               {trendingWeek.map((item) => (
                 <article key={item.rank} className="py-3.5 first:pt-0 last:pb-0 group">
                   <div className="flex items-baseline gap-4">
@@ -93,7 +93,7 @@ export default function EditorialTrio({
               <h3 className="font-serif text-base uppercase tracking-[0.14em] text-[#121214] font-medium shrink-0">
                 Voices
               </h3>
-              <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+              <div className="flex-1 h-[1px] bg-neutral-200" />
               <Link
                 href="/voices"
                 className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-[#A67C52] transition-colors shrink-0"

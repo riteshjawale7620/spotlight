@@ -18,6 +18,7 @@ import {
   Globe,
   ArrowRight,
 } from 'lucide-react'
+import { getLatestMagazine } from '@/lib/services/contentService'
 
 export const metadata = {
   title: 'Our Features | The Spotlight Leaders',
@@ -25,7 +26,10 @@ export const metadata = {
     'A complete ecosystem of content and experiences designed to inform, inspire and create impact for leaders and innovators.',
 }
 
-export default function FeaturesPage() {
+export const revalidate = 60
+
+export default async function FeaturesPage() {
+  const latestMagazine = await getLatestMagazine()
   const featurePillars = [
     {
       title: 'IN-DEPTH FEATURES',
@@ -131,14 +135,14 @@ export default function FeaturesPage() {
   ]
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBFBFA]">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
 
       <main className="flex-1">
         {/* ============================================================ */}
         {/* SECTION 1: HERO BANNER (Executive Skyline Lounge)            */}
         {/* ============================================================ */}
-        <section className="relative w-full min-h-[460px] sm:min-h-[520px] lg:min-h-[560px] flex items-center overflow-hidden border-b border-[#E2DDD5]">
+        <section className="relative w-full min-h-[460px] sm:min-h-[520px] lg:min-h-[560px] flex items-center overflow-hidden border-b border-neutral-200">
           {/* Background Photograph */}
           <div className="absolute inset-0 w-full h-full z-0">
             <Image
@@ -181,7 +185,7 @@ export default function FeaturesPage() {
         {/* ============================================================ */}
         {/* SECTION 2: OUR FEATURES (Ecosystem Grid)                     */}
         {/* ============================================================ */}
-        <section className="w-full bg-[#FBFBFA] border-b border-[#E2DDD5] py-14 lg:py-20">
+        <section className="w-full bg-white border-b border-neutral-200 py-14 lg:py-20">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
               {/* Left Column: Heading & CTA */}
@@ -235,7 +239,7 @@ export default function FeaturesPage() {
         {/* ============================================================ */}
         {/* SECTION 3: EDITORIAL EXCELLENCE                              */}
         {/* ============================================================ */}
-        <section className="w-full bg-[#F4EFE6] border-b border-[#E2DDD5] py-14 lg:py-20">
+        <section className="w-full bg-neutral-50 border-b border-neutral-200 py-14 lg:py-20">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
               {/* Left Column: Heading, Description & Metrics (5 cols) */}
@@ -253,7 +257,7 @@ export default function FeaturesPage() {
                 </p>
 
                 {/* 3 Metrics in a row */}
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#DED7CB]">
+                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-neutral-200">
                   <div>
                     <span className="font-serif text-2xl sm:text-3xl font-bold text-[#121214] block leading-none">
                       200+
@@ -285,13 +289,13 @@ export default function FeaturesPage() {
 
               {/* Right Column: Printed Magazine Spread & Cover Mockup (7 cols) */}
               <div className="lg:col-span-7 flex items-center justify-center">
-                <div className="relative w-full aspect-[16/10] overflow-hidden rounded-[2px] shadow-xl border border-[#DDD5C7] group">
+                <div className="relative w-full aspect-[16/10] overflow-hidden rounded-[2px] shadow-xl border border-neutral-200 group">
                   <Image
                     src="/images/features-editorial-spread.jpg"
                     alt="The Spotlight Leaders Editorial Spread & Printed Magazine"
                     fill
                     sizes="(max-width: 1024px) 100vw, 55vw"
-                    className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+                    className="object-cover object-center"
                   />
                 </div>
               </div>
@@ -302,7 +306,7 @@ export default function FeaturesPage() {
         {/* ============================================================ */}
         {/* SECTION 4: CONTENT FORMATS                                   */}
         {/* ============================================================ */}
-        <section className="w-full bg-[#FBFBFA] border-b border-[#E2DDD5] py-14 lg:py-20">
+        <section className="w-full bg-white border-b border-neutral-200 py-14 lg:py-20">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             {/* Header with full-width horizontal rule */}
             <div className="mb-8 sm:mb-10">
@@ -310,7 +314,7 @@ export default function FeaturesPage() {
                 <h2 className="font-serif text-xl sm:text-2xl uppercase tracking-[0.14em] text-[#121214] font-medium shrink-0">
                   Content Formats
                 </h2>
-                <div className="flex-1 h-[1px] bg-[#E2DDD5]" />
+                <div className="flex-1 h-[1px] bg-neutral-200" />
               </div>
               <p className="text-xs sm:text-sm text-neutral-500 font-sans">
                 Diverse formats for every kind of reader and listener.
@@ -324,7 +328,7 @@ export default function FeaturesPage() {
                 return (
                   <div
                     key={format.title}
-                    className="bg-white border border-[#E8E3DA] p-4 flex flex-col justify-between group hover:shadow-md transition-shadow duration-300"
+                    className="bg-white border border-neutral-200 p-4 flex flex-col justify-between group hover:shadow-md transition-shadow duration-300"
                   >
                     <div>
                       {/* Card Photo Container */}
@@ -334,13 +338,13 @@ export default function FeaturesPage() {
                           alt={format.title}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover"
                         />
                       </div>
 
                       {/* Icon Badge */}
                       <div className="flex justify-center -mt-8 mb-3 relative z-10">
-                        <div className="w-9 h-9 rounded-full bg-white border border-[#E2DDD5] shadow-sm flex items-center justify-center text-neutral-700 group-hover:text-[#A17A38] group-hover:border-[#A17A38] transition-colors">
+                        <div className="w-9 h-9 rounded-full bg-white border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-700 group-hover:text-[#A17A38] group-hover:border-[#A17A38] transition-colors">
                           <Icon className="w-4 h-4 stroke-[1.8]" />
                         </div>
                       </div>
@@ -419,7 +423,7 @@ export default function FeaturesPage() {
         {/* ============================================================ */}
         {/* SECTION 6: THE WEEK IN BUSINESS (Newsletter)                 */}
         {/* ============================================================ */}
-        <IssueAndNewsletter />
+        <IssueAndNewsletter magazine={latestMagazine} />
       </main>
 
       <Footer />
