@@ -7,8 +7,9 @@ import { issue } from './issue'
 import { magazine } from './magazine'
 import { podcast, summitEvent } from './podcast'
 import { webprofile } from './webprofile'
+import { leader } from './leader'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContent, category, author, article, issue, magazine, podcast, summitEvent, webprofile],
+  types: [blockContent, category, author, article, issue, magazine, podcast, summitEvent, webprofile, leader],
 }
 

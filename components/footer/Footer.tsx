@@ -90,7 +90,7 @@ export default function Footer() {
                 <Link href="/category/leaders" className="hover:text-white transition-colors">Leaders</Link>
               </li>
               <li>
-                <Link href="/featured-profiles" className="hover:text-white transition-colors">Featured Profiles</Link>
+                <Link href="/web-profiles" className="hover:text-white transition-colors">Web Profiles</Link>
               </li>
               <li>
                 <Link href="/category/industries" className="hover:text-white transition-colors">Industries</Link>

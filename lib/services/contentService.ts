@@ -13,6 +13,8 @@ import {
   ARTICLE_BY_SLUG_QUERY,
   ALL_LEADERS_QUERY,
   LEADER_BY_SLUG_QUERY,
+  WEB_PROFILES_QUERY,
+  WEB_PROFILE_BY_SLUG_QUERY,
   CATEGORY_PAGE_QUERY,
   INSIGHTS_PAGE_QUERY,
   LATEST_MAGAZINE_QUERY,
@@ -238,6 +240,98 @@ export async function getLeaderBySlug(slug: string): Promise<LeaderItem | null> 
   }
 
   const fallback = FEATURED_LEADERS_DATA.find((l) => l.slug === slug)
+  if (fallback) {
+    return {
+      ...fallback,
+      imageUrl: resolveLeaderImage(fallback.slug),
+    }
+  }
+  return null
+}
+
+export async function getWebProfiles(): Promise<LeaderItem[]> {
+  const data = await sanityFetch<any[]>({ query: WEB_PROFILES_QUERY })
+  const fallbackList = FEATURED_LEADERS_DATA.map((l) => ({
+    ...l,
+    imageUrl: resolveLeaderImage(l.slug),
+  }))
+
+  if (data && data.length > 0) {
+    const sanityProfiles: LeaderItem[] = data.map((item) => {
+      const fallback = fallbackList.find((f) => f.slug === item.slug)
+      const imageUrl =
+        item.imageUrl ||
+        resolveLeaderImage(item.slug)
+
+      return {
+        id: item._id,
+        name: item.name,
+        slug: item.slug,
+        role:
+          item.role && item.role !== 'Executive Leader'
+            ? item.role
+            : fallback?.role || item.role || 'Executive Leader',
+        organization:
+          item.organization && item.organization !== 'Spotlight Leaders'
+            ? item.organization
+            : fallback?.organization || item.organization || 'Spotlight Leaders',
+        badge: item.badge || fallback?.badge || 'EXECUTIVE PROFILE',
+        bio:
+          typeof item.biography === 'string' && item.biography.trim()
+            ? item.biography
+            : fallback?.bio ||
+              'Distinguished business executive, pioneer, and visionary leading corporate excellence.',
+        imageUrl,
+        quote: item.quote || fallback?.quote,
+        featuredOnHome: Boolean(item.featuredOnHome),
+      }
+    })
+
+    // Include any additional authentic dossiers from fallbackList not yet present in Sanity
+    const existingSlugs = new Set(sanityProfiles.map((p) => p.slug))
+    const extraProfiles = fallbackList.filter((f) => !existingSlugs.has(f.slug))
+
+    return [...sanityProfiles, ...extraProfiles]
+  }
+
+  return fallbackList
+}
+
+export async function getWebProfileBySlug(slug: string): Promise<LeaderItem | null> {
+  const data = await sanityFetch<any>({
+    query: WEB_PROFILE_BY_SLUG_QUERY,
+    params: { slug },
+  })
+
+  const fallback = FEATURED_LEADERS_DATA.find((l) => l.slug === slug)
+
+  if (data && data.name) {
+    const imageUrl = data.imageUrl || resolveLeaderImage(data.slug)
+
+    return {
+      id: data._id,
+      name: data.name,
+      slug: data.slug,
+      role:
+        data.role && data.role !== 'Executive Leader'
+          ? data.role
+          : fallback?.role || data.role || 'Executive Leader',
+      organization:
+        data.organization && data.organization !== 'Spotlight Leaders'
+          ? data.organization
+          : fallback?.organization || data.organization || 'Spotlight Leaders',
+      badge: data.badge || fallback?.badge || 'EXECUTIVE PROFILE',
+      bio:
+        typeof data.biography === 'string' && data.biography.trim()
+          ? data.biography
+          : fallback?.bio ||
+            'Distinguished business executive, pioneer, and visionary leading corporate excellence.',
+      imageUrl,
+      quote: data.quote || fallback?.quote,
+      featuredOnHome: Boolean(data.featuredOnHome),
+    }
+  }
+
   if (fallback) {
     return {
       ...fallback,

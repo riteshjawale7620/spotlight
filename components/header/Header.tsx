@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { label: 'HOME', href: '/' },
   { label: 'FEATURES', href: '/features' },
   { label: 'LEADERS', href: '/leaders' },
-  { label: 'FEATURED PROFILES', href: '/featured-profiles' },
+  { label: 'WEB PROFILES', href: '/web-profiles' },
   { label: 'INDUSTRIES', href: '/industries' },
   { label: 'INSIGHTS', href: '/insights' },
   { label: 'NEWS', href: '/news' },

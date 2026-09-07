@@ -6,8 +6,8 @@ import Link from 'next/link'
 import { ArrowRight, Award, Building2, Globe, Shield, Sparkles, UserCheck } from 'lucide-react'
 import type { LeaderItem } from '@/lib/data/mockData'
 
-interface FeaturedProfilesContentProps {
-  initialLeaders: LeaderItem[]
+interface WebProfilesContentProps {
+  initialProfiles: LeaderItem[]
 }
 
 const SECTOR_CATEGORIES = [
@@ -19,7 +19,7 @@ const SECTOR_CATEGORIES = [
 ]
 
 // Map leader slugs to our 4 approved industry domains
-const LEADER_INDUSTRY_MAP: Record<string, { id: string; label: string }> = {
+const PROFILE_INDUSTRY_MAP: Record<string, { id: string; label: string }> = {
   'ranjan-mahtani': { id: 'manufacturing', label: 'Manufacturing' },
   'dr-shoumo-mitra': { id: 'tech-ai', label: 'Tech / AI' },
   'craig-bell': { id: 'automobile', label: 'Automobile' },
@@ -30,33 +30,41 @@ const LEADER_INDUSTRY_MAP: Record<string, { id: string; label: string }> = {
   'jordan-meinster': { id: 'tech-ai', label: 'Tech / AI' },
   'shannon-yerkic': { id: 'tech-ai', label: 'Tech / AI' },
   'shabnam-akrami': { id: 'legal', label: 'Legal' },
+  'ben-sadgrove': { id: 'tech-ai', label: 'Tech / AI' },
+  'valeria-torres': { id: 'tech-ai', label: 'Tech / AI' },
+  'noah-miyazaki': { id: 'manufacturing', label: 'Manufacturing' },
+  'devang-raja': { id: 'tech-ai', label: 'Tech / AI' },
+  'dr-kianor-shah': { id: 'tech-ai', label: 'Tech / AI' },
+  'nilmini-ratwatte': { id: 'legal', label: 'Legal' },
+  'aanchal-gupta': { id: 'tech-ai', label: 'Tech / AI' },
+  'tanya-goodwin': { id: 'legal', label: 'Legal' },
 }
 
-export default function FeaturedProfilesContent({ initialLeaders = [] }: FeaturedProfilesContentProps) {
+export default function WebProfilesContent({ initialProfiles = [] }: WebProfilesContentProps) {
   const [selectedSector, setSelectedSector] = useState<string>('all')
 
-  const leaders = initialLeaders.length > 0 ? initialLeaders : []
-  const spotlightLeader = leaders[0] || null
+  const profiles = initialProfiles.length > 0 ? initialProfiles : []
+  const spotlightProfile = profiles[0] || null
 
-  const filteredLeaders = useMemo(() => {
-    if (selectedSector === 'all') return leaders
-    return leaders.filter((l) => {
-      const mapping = LEADER_INDUSTRY_MAP[l.slug]
+  const filteredProfiles = useMemo(() => {
+    if (selectedSector === 'all') return profiles
+    return profiles.filter((p) => {
+      const mapping = PROFILE_INDUSTRY_MAP[p.slug]
       return mapping?.id === selectedSector
     })
-  }, [leaders, selectedSector])
+  }, [profiles, selectedSector])
 
   // Compute counts per category
   const sectorCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: leaders.length }
-    for (const l of leaders) {
-      const mapping = LEADER_INDUSTRY_MAP[l.slug]
+    const counts: Record<string, number> = { all: profiles.length }
+    for (const p of profiles) {
+      const mapping = PROFILE_INDUSTRY_MAP[p.slug]
       if (mapping) {
         counts[mapping.id] = (counts[mapping.id] || 0) + 1
       }
     }
     return counts
-  }, [leaders])
+  }, [profiles])
 
   return (
     <div className="w-full bg-white">
@@ -72,7 +80,7 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
             </div>
 
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#121214] tracking-tight leading-[1.08]">
-              Featured Profiles
+              Web Profiles
             </h1>
 
             <p className="font-sans text-sm sm:text-base text-neutral-600 leading-relaxed max-w-2xl pt-1">
@@ -84,10 +92,10 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
             <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-neutral-200/80">
               <div>
                 <span className="font-serif text-2xl sm:text-3xl font-medium text-[#121214] block">
-                  {leaders.length}+
+                  {profiles.length}+
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 font-sans block mt-0.5">
-                  Executive Dossiers
+                  Web Profiles
                 </span>
               </div>
               <div>
@@ -120,22 +128,22 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
       </section>
 
       {/* 2. SPOTLIGHT COVER PROFILE BANNER (If available) */}
-      {spotlightLeader && (
+      {spotlightProfile && (
         <section className="w-full py-12 lg:py-16 border-b border-neutral-200">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-3 pb-3 mb-6">
               <span className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#8C6339]">
-                Cover Spotlight
+                Featured Web Profile
               </span>
               <div className="flex-1 h-[1px] bg-neutral-200" />
             </div>
 
             <div className="bg-[#0E0E10] text-white border border-[#27272A] overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-12 items-stretch">
-              {/* Left Column: Portrait (5 cols) */}
-              <div className="lg:col-span-5 relative min-h-[360px] sm:min-h-[440px] bg-neutral-900">
+              {/* Left Column: Portrait (5 cols) - Border to border, strict 3:2, no hover zoom */}
+              <div className="lg:col-span-5 relative min-h-[340px] sm:min-h-[420px] bg-neutral-900 overflow-hidden">
                 <Image
-                  src={spotlightLeader.imageUrl}
-                  alt={spotlightLeader.name}
+                  src={spotlightProfile.imageUrl}
+                  alt={spotlightProfile.name}
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 42vw"
@@ -145,7 +153,7 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
                 
                 <div className="absolute top-4 left-4 z-10">
                   <span className="inline-block text-[9px] uppercase tracking-[0.22em] font-bold text-[#D4AF37] bg-black/70 backdrop-blur-xs border border-[#C5A059]/40 px-3 py-1">
-                    {spotlightLeader.badge || 'SPOTLIGHT COVER LEADER'}
+                    {spotlightProfile.badge || 'SPOTLIGHT WEB PROFILE'}
                   </span>
                 </div>
               </div>
@@ -154,35 +162,35 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
               <div className="lg:col-span-7 p-7 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#C5A059] font-semibold">
-                    <span>{LEADER_INDUSTRY_MAP[spotlightLeader.slug]?.label || 'Manufacturing'}</span>
+                    <span>{PROFILE_INDUSTRY_MAP[spotlightProfile.slug]?.label || 'Business Leadership'}</span>
                     <span>·</span>
-                    <span>{spotlightLeader.organization}</span>
+                    <span>{spotlightProfile.organization}</span>
                   </div>
 
                   <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal leading-tight">
-                    {spotlightLeader.name}
+                    {spotlightProfile.name}
                   </h2>
 
                   <p className="text-xs sm:text-sm text-neutral-300 font-sans font-medium">
-                    {spotlightLeader.role}
+                    {spotlightProfile.role}
                   </p>
 
-                  {spotlightLeader.quote && (
+                  {spotlightProfile.quote && (
                     <div className="pt-2 pb-2">
                       <p className="font-serif text-base sm:text-lg text-neutral-200 italic leading-relaxed border-l-2 border-[#C5A059] pl-4">
-                        &ldquo;{spotlightLeader.quote}&rdquo;
+                        &ldquo;{spotlightProfile.quote}&rdquo;
                       </p>
                     </div>
                   )}
 
                   <p className="text-xs sm:text-[13px] text-neutral-400 font-sans leading-relaxed line-clamp-3 pt-1">
-                    {spotlightLeader.bio}
+                    {spotlightProfile.bio}
                   </p>
                 </div>
 
                 <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
                   <Link
-                    href={`/leaders/${spotlightLeader.slug}`}
+                    href={`/leaders/${spotlightProfile.slug}`}
                     className="inline-flex items-center gap-2 bg-[#8C6339] hover:bg-[#A67C52] text-white px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] shadow-md transition-all font-sans"
                   >
                     <span>Read Full Dossier</span>
@@ -207,10 +215,10 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-200">
               <div>
                 <h2 className="font-serif text-2xl sm:text-3xl text-neutral-900 font-normal">
-                  All Executive Profiles
+                  All Web Profiles
                 </h2>
                 <p className="text-xs text-neutral-500 font-sans mt-1">
-                  Showing {filteredLeaders.length} {filteredLeaders.length === 1 ? 'dossier' : 'dossiers'} across global ecosystems.
+                  Showing {filteredProfiles.length} {filteredProfiles.length === 1 ? 'profile' : 'profiles'} across global ecosystems.
                 </p>
               </div>
 
@@ -240,23 +248,23 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
             </div>
           </div>
 
-          {/* 3 Columns Grid of Executive Cards */}
+          {/* 3 Columns Grid of Web Profile Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {filteredLeaders.map((leader) => {
-              const industry = LEADER_INDUSTRY_MAP[leader.slug]?.label || 'Business Leadership'
+            {filteredProfiles.map((profile) => {
+              const industry = PROFILE_INDUSTRY_MAP[profile.slug]?.label || 'Business Leadership'
               return (
                 <article
-                  key={leader.id || leader.slug}
+                  key={profile.id || profile.slug}
                   className="group flex flex-col justify-between bg-white border border-neutral-200 overflow-hidden hover:shadow-lg hover:border-[#8C6339]/50 transition-all duration-300"
                 >
-                  {/* Border-to-Border Image (Strictly 3:2, no padding gap, no hover magnification) */}
+                  {/* Border-to-Border Image: Strict 3:2 aspect ratio, no padding around, no hover zoom */}
                   <Link
-                    href={`/leaders/${leader.slug}`}
+                    href={`/leaders/${profile.slug}`}
                     className="block relative aspect-[3/2] w-full overflow-hidden bg-neutral-100"
                   >
                     <Image
-                      src={leader.imageUrl}
-                      alt={leader.name}
+                      src={profile.imageUrl}
+                      alt={profile.name}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover object-top"
@@ -270,25 +278,25 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
                   <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
                     <div>
                       <span className="text-[9.5px] font-bold uppercase tracking-[0.2em] text-[#8C6339] block mb-1.5">
-                        {leader.organization}
+                        {profile.organization}
                       </span>
 
                       <h3 className="font-serif text-xl sm:text-[22px] font-normal text-neutral-900 group-hover:text-[#8C6339] transition-colors leading-snug">
-                        <Link href={`/leaders/${leader.slug}`}>{leader.name}</Link>
+                        <Link href={`/leaders/${profile.slug}`}>{profile.name}</Link>
                       </h3>
 
                       <p className="text-xs text-neutral-500 font-sans mt-1 font-medium line-clamp-1">
-                        {leader.role}
+                        {profile.role}
                       </p>
 
                       <p className="text-xs text-neutral-600 font-sans mt-3 line-clamp-3 leading-relaxed">
-                        {leader.bio}
+                        {profile.bio}
                       </p>
 
-                      {leader.quote && (
+                      {profile.quote && (
                         <div className="mt-3.5 pt-3 border-t border-neutral-100 bg-neutral-50/70 p-3 rounded-xs">
                           <p className="font-serif text-[12px] italic text-neutral-700 leading-snug line-clamp-2">
-                            &ldquo;{leader.quote}&rdquo;
+                            &ldquo;{profile.quote}&rdquo;
                           </p>
                         </div>
                       )}
@@ -296,11 +304,11 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
 
                     <div className="pt-4 mt-5 border-t border-neutral-100 flex items-center justify-between">
                       <span className="text-[10px] text-neutral-400 font-sans uppercase tracking-widest">
-                        {leader.badge || 'Executive Dossier'}
+                        {profile.badge || 'Web Profile'}
                       </span>
 
                       <Link
-                        href={`/leaders/${leader.slug}`}
+                        href={`/leaders/${profile.slug}`}
                         className="inline-flex items-center gap-1 text-xs font-sans font-bold uppercase tracking-wider text-[#141414] group-hover:text-[#8C6339] transition-colors"
                       >
                         <span>Read Dossier</span>
@@ -324,7 +332,7 @@ export default function FeaturedProfilesContent({ initialLeaders = [] }: Feature
                 Editorial Submissions & Nominations
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl text-[#121214] font-normal leading-snug">
-                Nominate an Executive for The Spotlight Leaders
+                Nominate an Executive for The Spotlight Web Profiles
               </h3>
               <p className="text-xs sm:text-sm text-neutral-600 font-sans leading-relaxed">
                 Our editorial board reviews distinguished chief executives, innovators, and founders who are

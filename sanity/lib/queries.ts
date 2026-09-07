@@ -152,7 +152,7 @@ export const LATEST_MAGAZINE_QUERY = groq`
   }
 `
 
-// Fetch All Executive Leaders (webprofile) from Sanity
+// Fetch All Executive Leaders (webprofile) from Sanity (Leaders Page)
 export const ALL_LEADERS_QUERY = groq`
   *[_type == "webprofile"] | order(featuredOnHome desc, _createdAt desc) {
     _id,
@@ -180,6 +180,39 @@ export const LEADER_BY_SLUG_QUERY = groq`
     quote,
     badge,
     "imageUrl": profileImage.asset->url
+  }
+`
+
+// Fetch All Web Profiles from Sanity (Web Profiles Page)
+export const WEB_PROFILES_QUERY = groq`
+  *[_type in ["webprofile", "leader"]] | order(coalesce(featuredOnHome, isHallOfFame, false) desc, _createdAt desc) {
+    _id,
+    name,
+    "slug": slug.current,
+    "role": coalesce(role, designation, "Executive Leader"),
+    "organization": coalesce(organization, company, "Spotlight Leaders"),
+    "biography": coalesce(biography, bio),
+    "featuredOnHome": coalesce(featuredOnHome, isHallOfFame, false),
+    "quote": quote,
+    "badge": coalesce(badge, "EXECUTIVE PROFILE"),
+    "imageUrl": coalesce(profileImage.asset->url, mainImage.asset->url, avatar.asset->url),
+    _type
+  }
+`
+
+export const WEB_PROFILE_BY_SLUG_QUERY = groq`
+  *[_type in ["webprofile", "leader"] && slug.current == $slug][0] {
+    _id,
+    name,
+    "slug": slug.current,
+    "role": coalesce(role, designation, "Executive Leader"),
+    "organization": coalesce(organization, company, "Spotlight Leaders"),
+    "biography": coalesce(biography, bio),
+    "featuredOnHome": coalesce(featuredOnHome, isHallOfFame, false),
+    "quote": quote,
+    "badge": coalesce(badge, "EXECUTIVE PROFILE"),
+    "imageUrl": coalesce(profileImage.asset->url, mainImage.asset->url, avatar.asset->url),
+    _type
   }
 `
 

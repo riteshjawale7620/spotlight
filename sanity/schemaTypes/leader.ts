@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
-export const webprofile = defineType({
-  name: 'webprofile',
-  title: 'Web Profile',
+export const leader = defineType({
+  name: 'leader',
+  title: 'Executive Leader (Legacy Profile)',
   type: 'document',
   fields: [
     defineField({
@@ -22,16 +22,6 @@ export const webprofile = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'role',
-      title: 'Role / Designation (e.g. Founder & CEO, Managing Partner)',
-      type: 'string',
-    }),
-    defineField({
-      name: 'organization',
-      title: 'Company / Organization',
-      type: 'string',
-    }),
-    defineField({
       name: 'profileImage',
       title: 'Portrait / Profile Image',
       type: 'image',
@@ -40,16 +30,20 @@ export const webprofile = defineType({
       },
     }),
     defineField({
+      name: 'role',
+      title: 'Role / Designation',
+      type: 'string',
+    }),
+    defineField({
+      name: 'organization',
+      title: 'Company / Organization',
+      type: 'string',
+    }),
+    defineField({
       name: 'biography',
       title: 'Biography / Editorial Dossier',
       type: 'text',
       rows: 10,
-    }),
-    defineField({
-      name: 'featuredOnHome',
-      title: 'Feature on Homepage?',
-      type: 'boolean',
-      initialValue: false,
     }),
     defineField({
       name: 'quote',
@@ -59,8 +53,20 @@ export const webprofile = defineType({
     }),
     defineField({
       name: 'badge',
-      title: 'Industry / Focus Badge (e.g. WELLNESS, FINTECH, AI, LEGAL TECH)',
+      title: 'Badge / Industry Tag',
       type: 'string',
+    }),
+    defineField({
+      name: 'isHallOfFame',
+      title: 'Hall of Fame / Featured',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'isGlobalIcon',
+      title: 'Global Icon',
+      type: 'boolean',
+      initialValue: false,
     }),
   ],
   preview: {
