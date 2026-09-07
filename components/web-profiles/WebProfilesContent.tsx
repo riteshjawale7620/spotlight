@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Award, Building2, Globe, Shield, Sparkles, UserCheck } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import type { LeaderItem } from '@/lib/data/mockData'
 
 interface WebProfilesContentProps {
@@ -18,39 +18,38 @@ const SECTOR_CATEGORIES = [
   { id: 'legal', label: 'Legal' },
 ]
 
-// Map leader slugs to our 4 approved industry domains
-const PROFILE_INDUSTRY_MAP: Record<string, { id: string; label: string }> = {
-  'ranjan-mahtani': { id: 'manufacturing', label: 'Manufacturing' },
-  'dr-shoumo-mitra': { id: 'tech-ai', label: 'Tech / AI' },
-  'craig-bell': { id: 'automobile', label: 'Automobile' },
-  'moutih-rafei': { id: 'tech-ai', label: 'Tech / AI' },
-  'manuel-rendon': { id: 'manufacturing', label: 'Manufacturing' },
-  'suzanne-robb': { id: 'tech-ai', label: 'Tech / AI' },
-  'khalid-turk': { id: 'tech-ai', label: 'Tech / AI' },
-  'jordan-meinster': { id: 'tech-ai', label: 'Tech / AI' },
-  'shannon-yerkic': { id: 'tech-ai', label: 'Tech / AI' },
-  'shabnam-akrami': { id: 'legal', label: 'Legal' },
-  'ben-sadgrove': { id: 'tech-ai', label: 'Tech / AI' },
-  'valeria-torres': { id: 'tech-ai', label: 'Tech / AI' },
-  'noah-miyazaki': { id: 'manufacturing', label: 'Manufacturing' },
-  'devang-raja': { id: 'tech-ai', label: 'Tech / AI' },
-  'dr-kianor-shah': { id: 'tech-ai', label: 'Tech / AI' },
-  'nilmini-ratwatte': { id: 'legal', label: 'Legal' },
-  'aanchal-gupta': { id: 'tech-ai', label: 'Tech / AI' },
-  'tanya-goodwin': { id: 'legal', label: 'Legal' },
+// Accurate mapping for verified leaders to ensure crisp domain metadata
+const PROFILE_METADATA: Record<string, { sectorId: string; sectorLabel: string; role?: string; organization?: string }> = {
+  'aanchal-gupta': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Founder', organization: 'Agents Stack' },
+  'khalid-turk': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Founder & Chief Healthcare Technology Officer', organization: 'ExecPresence.Online' },
+  'manuel-rendon': { sectorId: 'manufacturing', sectorLabel: 'Manufacturing', role: 'Chief Executive Officer & Co-Founder', organization: 'Timeplast' },
+  'dr-shoumo-mitra': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Founder & CEO', organization: 'V-Sciences Investments' },
+  'suzanne-robb': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Chief Operating Officer', organization: 'Alloy Personal Training Franchise' },
+  'jordan-meinster': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Chief Executive Officer', organization: 'Pickleball Kingdom' },
+  'shannon-yerkic': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Executive Leader & Educational Innovator', organization: 'Global Learning Solutions' },
+  'shabnam-akrami': { sectorId: 'legal', sectorLabel: 'Legal', role: 'Managing Partner', organization: 'Akrami & Associates' },
+  'ranjan-mahtani': { sectorId: 'manufacturing', sectorLabel: 'Manufacturing', role: 'Founder & Executive Chairman', organization: 'Epic Group' },
+  'craig-bell': { sectorId: 'automobile', sectorLabel: 'Automobile', role: 'Director & General Counsel', organization: 'Amicus Commercial Lawyers' },
+  'moutih-rafei': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Managing Partner', organization: 'Rafei Capital' },
+  'ben-sadgrove': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Chief Operating Officer', organization: 'Clean Energy & Technology' },
+  'valeria-torres': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Managing Director', organization: 'Digital Transformation' },
+  'noah-miyazaki': { sectorId: 'manufacturing', sectorLabel: 'Manufacturing', role: 'Executive Vice President', organization: 'Industrial Systems' },
+  'devang-raja': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Chief Executive Officer', organization: 'Venture Capital & Tech' },
+  'dr-kianor-shah': { sectorId: 'tech-ai', sectorLabel: 'Tech / AI', role: 'Founder & CEO', organization: 'International Health & Tech' },
+  'nilmini-ratwatte': { sectorId: 'legal', sectorLabel: 'Legal', role: 'Senior Partner', organization: 'Global Legal Advisory' },
+  'tanya-goodwin': { sectorId: 'legal', sectorLabel: 'Legal', role: 'Managing Partner', organization: 'Corporate Law & Governance' },
 }
 
 export default function WebProfilesContent({ initialProfiles = [] }: WebProfilesContentProps) {
   const [selectedSector, setSelectedSector] = useState<string>('all')
 
   const profiles = initialProfiles.length > 0 ? initialProfiles : []
-  const spotlightProfile = profiles[0] || null
 
   const filteredProfiles = useMemo(() => {
     if (selectedSector === 'all') return profiles
     return profiles.filter((p) => {
-      const mapping = PROFILE_INDUSTRY_MAP[p.slug]
-      return mapping?.id === selectedSector
+      const meta = PROFILE_METADATA[p.slug]
+      return meta?.sectorId === selectedSector
     })
   }, [profiles, selectedSector])
 
@@ -58,9 +57,9 @@ export default function WebProfilesContent({ initialProfiles = [] }: WebProfiles
   const sectorCounts = useMemo(() => {
     const counts: Record<string, number> = { all: profiles.length }
     for (const p of profiles) {
-      const mapping = PROFILE_INDUSTRY_MAP[p.slug]
-      if (mapping) {
-        counts[mapping.id] = (counts[mapping.id] || 0) + 1
+      const meta = PROFILE_METADATA[p.slug]
+      if (meta) {
+        counts[meta.sectorId] = (counts[meta.sectorId] || 0) + 1
       }
     }
     return counts
@@ -69,7 +68,7 @@ export default function WebProfilesContent({ initialProfiles = [] }: WebProfiles
   return (
     <div className="w-full bg-white">
       {/* 1. HERO MASTHEAD */}
-      <section className="w-full border-b border-neutral-200 bg-[#FAF9F6] py-14 sm:py-18 lg:py-22">
+      <section className="w-full border-b border-neutral-200 bg-[#FAF9F6] py-12 sm:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
             <div className="flex items-center gap-3">
@@ -127,88 +126,8 @@ export default function WebProfilesContent({ initialProfiles = [] }: WebProfiles
         </div>
       </section>
 
-      {/* 2. SPOTLIGHT COVER PROFILE BANNER (If available) */}
-      {spotlightProfile && (
-        <section className="w-full py-12 lg:py-16 border-b border-neutral-200">
-          <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 pb-3 mb-6">
-              <span className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#8C6339]">
-                Featured Web Profile
-              </span>
-              <div className="flex-1 h-[1px] bg-neutral-200" />
-            </div>
-
-            <div className="bg-[#0E0E10] text-white border border-[#27272A] overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-12 items-stretch">
-              {/* Left Column: Portrait (5 cols) - Border to border, strict 3:2, no hover zoom */}
-              <div className="lg:col-span-5 relative min-h-[340px] sm:min-h-[420px] bg-neutral-900 overflow-hidden">
-                <Image
-                  src={spotlightProfile.imageUrl}
-                  alt={spotlightProfile.name}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#0E0E10]" />
-                
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-block text-[9px] uppercase tracking-[0.22em] font-bold text-[#D4AF37] bg-black/70 backdrop-blur-xs border border-[#C5A059]/40 px-3 py-1">
-                    {spotlightProfile.badge || 'SPOTLIGHT WEB PROFILE'}
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Editorial Overview & Quote (7 cols) */}
-              <div className="lg:col-span-7 p-7 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#C5A059] font-semibold">
-                    <span>{PROFILE_INDUSTRY_MAP[spotlightProfile.slug]?.label || 'Business Leadership'}</span>
-                    <span>·</span>
-                    <span>{spotlightProfile.organization}</span>
-                  </div>
-
-                  <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal leading-tight">
-                    {spotlightProfile.name}
-                  </h2>
-
-                  <p className="text-xs sm:text-sm text-neutral-300 font-sans font-medium">
-                    {spotlightProfile.role}
-                  </p>
-
-                  {spotlightProfile.quote && (
-                    <div className="pt-2 pb-2">
-                      <p className="font-serif text-base sm:text-lg text-neutral-200 italic leading-relaxed border-l-2 border-[#C5A059] pl-4">
-                        &ldquo;{spotlightProfile.quote}&rdquo;
-                      </p>
-                    </div>
-                  )}
-
-                  <p className="text-xs sm:text-[13px] text-neutral-400 font-sans leading-relaxed line-clamp-3 pt-1">
-                    {spotlightProfile.bio}
-                  </p>
-                </div>
-
-                <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                  <Link
-                    href={`/leaders/${spotlightProfile.slug}`}
-                    className="inline-flex items-center gap-2 bg-[#8C6339] hover:bg-[#A67C52] text-white px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] shadow-md transition-all font-sans"
-                  >
-                    <span>Read Full Dossier</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-
-                  <span className="text-[11px] text-neutral-400 uppercase tracking-widest font-sans">
-                    The Spotlight Editorial Forum
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* 3. SECTOR FILTERABLE DIRECTORY */}
-      <section className="w-full py-12 lg:py-18">
+      {/* 2. SECTOR FILTERABLE DIRECTORY */}
+      <section className="w-full py-10 lg:py-16">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header & Filter Bar */}
           <div className="space-y-6 mb-10">
@@ -251,13 +170,17 @@ export default function WebProfilesContent({ initialProfiles = [] }: WebProfiles
           {/* 3 Columns Grid of Web Profile Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredProfiles.map((profile) => {
-              const industry = PROFILE_INDUSTRY_MAP[profile.slug]?.label || 'Business Leadership'
+              const meta = PROFILE_METADATA[profile.slug]
+              const industry = meta?.sectorLabel || 'Business Leadership'
+              const role = meta?.role || (profile.role && profile.role !== 'Executive Leader' ? profile.role : 'Executive Leader')
+              const organization = meta?.organization || (profile.organization && profile.organization !== 'Spotlight Leaders' ? profile.organization : 'Spotlight Leaders')
+
               return (
                 <article
                   key={profile.id || profile.slug}
                   className="group flex flex-col justify-between bg-white border border-neutral-200 overflow-hidden hover:shadow-lg hover:border-[#8C6339]/50 transition-all duration-300"
                 >
-                  {/* Border-to-Border Image: Strict 3:2 aspect ratio, no padding around, no hover zoom */}
+                  {/* Border-to-Border Image: Strict 3:2 aspect ratio, no padding around, no hover zoom, no dark gradient */}
                   <Link
                     href={`/leaders/${profile.slug}`}
                     className="block relative aspect-[3/2] w-full overflow-hidden bg-neutral-100"
@@ -267,26 +190,25 @@ export default function WebProfilesContent({ initialProfiles = [] }: WebProfiles
                       alt={profile.name}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover object-top"
+                      className="object-cover object-center"
                     />
-                    <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-xs px-2.5 py-1 text-white font-sans text-[9px] uppercase tracking-[0.2em] font-bold border border-white/20">
-                      {industry}
-                    </div>
                   </Link>
 
                   {/* Inner Content Block */}
                   <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
                     <div>
-                      <span className="text-[9.5px] font-bold uppercase tracking-[0.2em] text-[#8C6339] block mb-1.5">
-                        {profile.organization}
-                      </span>
+                      <div className="flex items-center gap-2 text-[9.5px] font-bold uppercase tracking-[0.2em] text-[#8C6339] mb-1.5">
+                        <span>{industry}</span>
+                        <span>·</span>
+                        <span className="text-neutral-700">{organization}</span>
+                      </div>
 
                       <h3 className="font-serif text-xl sm:text-[22px] font-normal text-neutral-900 group-hover:text-[#8C6339] transition-colors leading-snug">
                         <Link href={`/leaders/${profile.slug}`}>{profile.name}</Link>
                       </h3>
 
                       <p className="text-xs text-neutral-500 font-sans mt-1 font-medium line-clamp-1">
-                        {profile.role}
+                        {role}
                       </p>
 
                       <p className="text-xs text-neutral-600 font-sans mt-3 line-clamp-3 leading-relaxed">
@@ -323,7 +245,7 @@ export default function WebProfilesContent({ initialProfiles = [] }: WebProfiles
         </div>
       </section>
 
-      {/* 4. EDITORIAL NOMINATION / CALL TO LEADERS */}
+      {/* 3. EDITORIAL NOMINATION / CALL TO LEADERS */}
       <section className="w-full bg-[#FAF9F6] border-t border-neutral-200 py-14 lg:py-18">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white border border-neutral-200 p-8 sm:p-12 lg:p-14 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-8">

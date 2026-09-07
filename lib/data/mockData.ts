@@ -287,6 +287,22 @@ Shabnam Akrami continues to push the boundaries of modern legal practice, provin
     quote: 'Innovation in the legal sector is fundamentally about expanding access, elevating integrity, and navigating international complexities with empathy.',
     featuredOnHome: true,
   },
+  {
+    id: 'aanchal-gupta',
+    name: 'Aanchal Gupta',
+    slug: 'aanchal-gupta',
+    role: 'Founder',
+    organization: 'Agents Stack',
+    badge: 'AI & AGENTIC TECH',
+    bio: `Aanchal Gupta is the Founder of Agents Stack, a pioneering technology enterprise at the forefront of the agentic artificial intelligence revolution. With a deep technical background in distributed systems, autonomous multi-agent orchestration, and enterprise software engineering, Gupta is architecting the cognitive infrastructure required for autonomous workflows in modern organizations.
+
+Recognizing that generative AI was constrained by single-prompt stateless interactions, Gupta founded Agents Stack to enable autonomous agents that can plan, reason, integrate with existing enterprise toolchains, and execute complex multi-step objectives deterministically. Under her technical leadership, the platform provides Fortune 500 corporations and fast-scaling tech companies with secure, verifiable frameworks for deploying agentic fleets across engineering, customer operations, and financial auditing.
+
+Gupta is an outspoken advocate for deterministic reliability, ethical guardrails, and transparency in autonomous AI systems, regularly advising founders and engineering leaders on building robust, fault-tolerant cognitive architectures.`,
+    imageUrl: 'https://cdn.sanity.io/images/75rd7yks/production/5aca253a673391df4235d2f46f9160a6dcef0469-1200x800.jpg',
+    quote: 'The future of enterprise software is not manual execution—it is intelligent agentic orchestration built on trust, safety, and deterministic precision.',
+    featuredOnHome: true,
+  },
 ]
 
 
