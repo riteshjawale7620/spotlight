@@ -10,13 +10,13 @@ import SubscribeModal from './SubscribeModal'
 
 const NAV_LINKS = [
   { label: 'HOME', href: '/' },
+  { label: 'MAGAZINE', href: '/magazine' },
   { label: 'FEATURES', href: '/features' },
   { label: 'LEADERS', href: '/leaders' },
   { label: 'WEB PROFILES', href: '/web-profiles' },
   { label: 'INDUSTRIES', href: '/industries' },
   { label: 'INSIGHTS', href: '/insights' },
   { label: 'NEWS', href: '/news' },
-  { label: 'MAGAZINE', href: '/magazine' },
 ]
 
 export default function Header() {
@@ -50,30 +50,34 @@ export default function Header() {
           </div>
 
           {/* Right Column: Search, Subscribe (Desktop/Tablet) & Mobile-only Hamburger Menu */}
-          <div className="flex items-center justify-end gap-2 sm:gap-4 shrink-0">
+          <div className="flex items-center justify-end gap-2.5 sm:gap-3.5 shrink-0">
+            {/* Search Pill Button */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 text-neutral-800 hover:text-black uppercase transition-colors flex items-center gap-1.5"
+              className="h-9 px-3 sm:px-3.5 rounded-full border border-neutral-200 hover:border-neutral-300 bg-neutral-50/90 hover:bg-white text-neutral-600 hover:text-black flex items-center gap-2 text-xs transition-all duration-200 shadow-2xs group cursor-pointer"
               aria-label="Search"
             >
-              <span className="hidden sm:inline text-xs font-semibold tracking-wider">Search</span>
-              <Search className="w-4 h-4 sm:w-3.5 sm:h-3.5 stroke-[2]" />
+              <Search className="w-3.5 h-3.5 text-neutral-500 group-hover:text-[#C5A059] transition-colors" />
+              <span className="hidden sm:inline text-[11px] font-sans font-semibold tracking-wider text-neutral-600 group-hover:text-black">
+                Search
+              </span>
             </button>
 
+            {/* Subscribe Luxury Button */}
             <button
               onClick={() => setSubscribeOpen(true)}
-              className="hidden sm:inline-flex px-3.5 sm:px-4 py-1 text-[11px] font-sans font-bold tracking-[0.18em] uppercase text-neutral-900 hover:text-[#A17A38] underline decoration-neutral-400 underline-offset-4 hover:decoration-[#A17A38] transition-all whitespace-nowrap"
+              className="hidden sm:inline-flex items-center justify-center h-9 px-4 sm:px-5 rounded-full bg-[#121214] hover:bg-[#C5A059] text-white hover:text-black font-sans text-[11px] uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-xs hover:shadow-[0_4px_16px_rgba(197,160,89,0.28)] cursor-pointer"
             >
-              Subscribe
+              <span>Subscribe</span>
             </button>
 
             {/* Mobile/Small Screen Only: Hamburger Menu Button */}
             <button
               onClick={() => setDrawerOpen(true)}
-              className="md:hidden p-2 text-neutral-800 hover:text-black hover:bg-neutral-100/70 rounded transition-colors flex items-center justify-center"
+              className="md:hidden w-9 h-9 rounded-full border border-neutral-200 text-neutral-800 hover:text-black hover:bg-neutral-100/70 transition-colors flex items-center justify-center cursor-pointer"
               aria-label="Open Navigation Menu"
             >
-              <Menu className="w-6 h-6 stroke-[1.8]" />
+              <Menu className="w-5 h-5 stroke-[1.8]" />
             </button>
           </div>
         </div>
