@@ -458,11 +458,11 @@ export const INDUSTRIES_DATA: IndustryItem[] = [
 ]
 
 export const LATEST_NEWS_DATA = [
-  { time: '09:42', title: 'Global supply chains adapt to next-generation robotics', category: 'MANUFACTURING', slug: 'smart-manufacturing-tech' },
-  { time: '09:10', title: 'Generative AI deployment accelerates across enterprise platforms', category: 'TECH / AI', slug: 'enterprise-ai-deployment' },
-  { time: '08:51', title: 'Electric vehicle battery platforms scale across global markets', category: 'AUTOMOBILE', slug: 'autonomous-vehicles-move-closer-mainstream-adoption' },
-  { time: '08:32', title: 'Regulatory compliance standards shift for cross-border tech', category: 'LEGAL', slug: 'cross-border-legal-compliance' },
-  { time: '08:10', title: 'Bio-assimilable polymers gain traction in global packaging', category: 'MANUFACTURING', slug: 'smart-manufacturing-tech' },
+  { id: 'ln-1', time: '09:42', title: 'Global supply chains adapt to next-generation robotics', category: 'MANUFACTURING', slug: 'smart-manufacturing-tech' },
+  { id: 'ln-2', time: '09:10', title: 'Generative AI deployment accelerates across enterprise platforms', category: 'TECH / AI', slug: 'enterprise-ai-deployment' },
+  { id: 'ln-3', time: '08:51', title: 'Electric vehicle battery platforms scale across global markets', category: 'AUTOMOBILE', slug: 'electric-vehicle-battery-platforms-scale' },
+  { id: 'ln-4', time: '08:32', title: 'Regulatory compliance standards shift for cross-border tech', category: 'LEGAL', slug: 'cross-border-legal-compliance' },
+  { id: 'ln-5', time: '08:10', title: 'Bio-assimilable polymers gain traction in global packaging', category: 'MANUFACTURING', slug: 'bio-assimilable-polymers-packaging-tech' },
 ]
 
 export const TRENDING_WEEK_DATA = [

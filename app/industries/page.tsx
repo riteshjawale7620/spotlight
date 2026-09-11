@@ -155,40 +155,46 @@ export default function IndustriesPage() {
 
   const latestNews = [
     {
+      id: 'ln-ind-1',
       time: '09:42 AM',
       title: 'Global supply chains adapt to next-generation industrial robotics',
       category: 'MANUFACTURING',
       slug: 'smart-manufacturing-tech',
     },
     {
+      id: 'ln-ind-2',
       time: '08:18 AM',
       title: 'Generative AI deployment accelerates across enterprise platforms',
       category: 'TECH / AI',
       slug: 'enterprise-ai-deployment',
     },
     {
+      id: 'ln-ind-3',
       time: '07:55 AM',
       title: 'Electric vehicle battery platforms scale across global markets',
       category: 'AUTOMOBILE',
-      slug: 'autonomous-vehicles-move-closer-mainstream-adoption',
+      slug: 'electric-vehicle-battery-platforms-scale',
     },
     {
+      id: 'ln-ind-4',
       time: '07:20 AM',
       title: 'Regulatory compliance standards shift for cross-border digital assets',
       category: 'LEGAL',
       slug: 'cross-border-legal-compliance',
     },
     {
+      id: 'ln-ind-5',
       time: '06:45 AM',
       title: 'Autonomous mobility networks near commercial urban rollout',
       category: 'AUTOMOBILE',
       slug: 'autonomous-vehicles-move-closer-mainstream-adoption',
     },
     {
+      id: 'ln-ind-6',
       time: '06:10 AM',
       title: 'Bio-assimilable polymers gain traction in global packaging lines',
       category: 'MANUFACTURING',
-      slug: 'smart-manufacturing-tech',
+      slug: 'bio-assimilable-polymers-packaging-tech',
     },
   ]
 
@@ -639,8 +645,8 @@ export default function IndustriesPage() {
 
               {/* Right: 6 Timestamped News Grid (8 cols) */}
               <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {latestNews.map((news) => (
-                  <article key={news.slug} className="space-y-1.5 border-b sm:border-b-0 pb-3 sm:pb-0">
+                {latestNews.map((news, idx) => (
+                  <article key={news.id || `${news.slug}-${idx}`} className="space-y-1.5 border-b sm:border-b-0 pb-3 sm:pb-0">
                     <span className="font-mono text-xs text-neutral-400 font-medium block">
                       {news.time}
                     </span>
