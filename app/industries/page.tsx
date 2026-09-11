@@ -713,9 +713,9 @@ export default function IndustriesPage() {
 
               {/* Right: Magazine Flatlay (4 cols) */}
               <div className="lg:col-span-4 flex items-center justify-center">
-                <div className="relative w-full max-w-[320px] aspect-[4/3] overflow-hidden rounded-[2px] shadow-2xl border border-white/10">
+                <div className="relative w-full max-w-[360px] aspect-[16/10] overflow-hidden rounded-[2px] shadow-2xl border border-white/10">
                   <Image
-                    src="/images/features-editorial-spread.jpg"
+                    src="/images/demo/mag-demo.png"
                     alt="The Spotlight Business Leaders Magazine"
                     fill
                     sizes="(max-width: 1024px) 100vw, 35vw"
