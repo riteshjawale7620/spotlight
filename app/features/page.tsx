@@ -291,7 +291,7 @@ export default async function FeaturesPage() {
               <div className="lg:col-span-7 flex items-center justify-center">
                 <div className="relative w-full aspect-[16/10] overflow-hidden rounded-[2px] shadow-xl border border-neutral-200 group">
                   <Image
-                    src="/images/features-editorial-spread.jpg"
+                    src="/images/demo/mag-demo.png"
                     alt="The Spotlight Business Leaders Editorial Spread & Printed Magazine"
                     fill
                     sizes="(max-width: 1024px) 100vw, 55vw"
