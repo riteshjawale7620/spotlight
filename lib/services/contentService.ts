@@ -198,7 +198,7 @@ export async function getLeaders(): Promise<LeaderItem[]> {
       name: item.name,
       slug: item.slug,
       role: item.role || 'Featured Leader',
-      organization: item.organization || 'Spotlight Leaders',
+      organization: item.organization || 'Spotlight Business Leaders',
       badge: item.badge || 'EXECUTIVE',
       bio:
         typeof item.biography === 'string'
@@ -227,7 +227,7 @@ export async function getLeaderBySlug(slug: string): Promise<LeaderItem | null> 
       name: data.name,
       slug: data.slug,
       role: data.role || 'Featured Leader',
-      organization: data.organization || 'Spotlight Leaders',
+      organization: data.organization || 'Spotlight Business Leaders',
       badge: data.badge || 'EXECUTIVE',
       bio:
         typeof data.biography === 'string'
@@ -272,9 +272,9 @@ export async function getWebProfiles(): Promise<LeaderItem[]> {
             ? item.role
             : fallback?.role || item.role || 'Executive Leader',
         organization:
-          item.organization && item.organization !== 'Spotlight Leaders'
+          item.organization && item.organization !== 'Spotlight Business Leaders'
             ? item.organization
-            : fallback?.organization || item.organization || 'Spotlight Leaders',
+            : fallback?.organization || item.organization || 'Spotlight Business Leaders',
         badge: item.badge || fallback?.badge || 'EXECUTIVE PROFILE',
         bio:
           typeof item.biography === 'string' && item.biography.trim()
@@ -317,9 +317,9 @@ export async function getWebProfileBySlug(slug: string): Promise<LeaderItem | nu
           ? data.role
           : fallback?.role || data.role || 'Executive Leader',
       organization:
-        data.organization && data.organization !== 'Spotlight Leaders'
+        data.organization && data.organization !== 'Spotlight Business Leaders'
           ? data.organization
-          : fallback?.organization || data.organization || 'Spotlight Leaders',
+          : fallback?.organization || data.organization || 'Spotlight Business Leaders',
       badge: data.badge || fallback?.badge || 'EXECUTIVE PROFILE',
       bio:
         typeof data.biography === 'string' && data.biography.trim()

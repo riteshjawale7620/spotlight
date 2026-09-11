@@ -129,7 +129,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </div>
 
               <span className="uppercase tracking-widest text-[10px]">
-                The Spotlight Leaders &bull; Issue 2026
+                The Spotlight Business Leaders &bull; Issue 2026
               </span>
             </div>
           </div>

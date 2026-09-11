@@ -80,7 +80,7 @@ export default async function LeaderDetailPage({ params }: LeaderPageProps) {
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#A17A38]">
                   <Award className="w-4 h-4 text-[#A17A38]" />
-                  <span>The Spotlight Leaders • Executive Series</span>
+                  <span>The Spotlight Business Leaders • Executive Series</span>
                 </div>
 
                 <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#141414] font-normal leading-[1.08]">

@@ -6,7 +6,7 @@ import { getInsightsPageData } from '@/lib/services/contentService'
 export const revalidate = 60
 
 export const metadata = {
-  title: 'Insights & Strategic Analysis | The Spotlight Leaders',
+  title: 'Insights & Strategic Analysis | The Spotlight Business Leaders',
   description:
     'Expert perspectives, in-depth strategic analysis and thought leadership across key global industries.',
 }

@@ -429,7 +429,7 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
                                 <div>
                                   <div className="text-center pt-0.5 pb-1 border-b border-white/30">
                                     <span className="font-serif text-[9.5px] sm:text-[10.5px] tracking-[0.18em] uppercase text-white font-medium block leading-tight">
-                                      THE SPOTLIGHT LEADERS
+                                      THE SPOTLIGHT BUSINESS LEADERS
                                     </span>
                                     <span className="text-[5.5px] sm:text-[6px] tracking-[0.28em] uppercase text-neutral-300 block font-sans">
                                       INSPIRING THE FUTURE OF BUSINESS
@@ -556,7 +556,7 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
                 </p>
                 <div className="w-6 h-[1px] bg-[#C5A059] mx-auto" />
                 <span className="text-[8px] font-sans font-bold uppercase tracking-[0.24em] text-[#8C6D3B] block">
-                  THE SPOTLIGHT LEADERS
+                  THE SPOTLIGHT BUSINESS LEADERS
                 </span>
               </div>
 
@@ -572,14 +572,14 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
           <div className="flex items-center gap-3">
             <Image
               src="/logo/emblem.png"
-              alt="Spotlight Leaders Emblem"
+              alt="Spotlight Business Leaders Emblem"
               width={1275}
               height={1234}
               className="w-8 h-8 object-contain"
             />
             <div>
               <span className="font-serif text-base sm:text-lg tracking-[0.18em] uppercase text-[#141416] font-normal block">
-                THE SPOTLIGHT LEADERS
+                THE SPOTLIGHT BUSINESS LEADERS
               </span>
               <span className="text-[7.5px] font-sans tracking-[0.26em] uppercase text-neutral-500 block">
                 INSPIRING THE FUTURE OF BUSINESS
@@ -638,7 +638,7 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
                   />
                   {!selectedIssue.isSanity && (
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60 p-2.5 flex flex-col justify-between text-white">
-                      <span className="font-serif text-[9px] tracking-widest uppercase">THE SPOTLIGHT LEADERS</span>
+                      <span className="font-serif text-[9px] tracking-widest uppercase">THE SPOTLIGHT BUSINESS LEADERS</span>
                       <span className="font-serif text-xs uppercase font-medium">{selectedIssue.title}</span>
                     </div>
                   )}

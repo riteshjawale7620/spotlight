@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "THE SPOTLIGHT LEADERS | Inspiring the Future of Business",
+  title: "SPOTLIGHT BUSINESS LEADERS | Inspiring the Future of Business",
   description: "Global business magazine, features, insights, leaders, industries, and executive analysis.",
   icons: {
     icon: "/logo/emblem.png",

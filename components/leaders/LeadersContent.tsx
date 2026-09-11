@@ -198,7 +198,7 @@ export default function LeadersContent({ initialLeaders }: LeadersContentProps) 
                 <div className="pt-4 border-t border-neutral-200 flex flex-wrap items-center gap-4 sm:gap-6 text-[10.5px] font-sans uppercase tracking-widest text-neutral-400">
                   <span>Executive Leadership Series</span>
                   <span className="hidden sm:inline">•</span>
-                  <span>Curated by The Spotlight Leaders</span>
+                  <span>Curated by The Spotlight Business Leaders</span>
                 </div>
               </div>
 
@@ -659,7 +659,7 @@ export default function LeadersContent({ initialLeaders }: LeadersContentProps) 
                         onChange={(e) => setAgreed(e.target.checked)}
                         className="rounded-xs border-neutral-300 text-[#A17A38] focus:ring-[#A17A38]"
                       />
-                      <span>I agree to receive communications from The Spotlight Leaders.</span>
+                      <span>I agree to receive communications from The Spotlight Business Leaders.</span>
                     </label>
                   </form>
                 )}
@@ -669,7 +669,7 @@ export default function LeadersContent({ initialLeaders }: LeadersContentProps) 
                 <div className="relative w-full max-w-[320px] aspect-[4/3] overflow-hidden rounded-[2px] shadow-lg border border-[#DDD5C7]">
                   <Image
                     src="/images/features-editorial-spread.jpg"
-                    alt="The Spotlight Leaders Magazine on desk"
+                    alt="The Spotlight Business Leaders Magazine on desk"
                     fill
                     sizes="(max-width: 1024px) 100vw, 35vw"
                     className="object-cover object-center"

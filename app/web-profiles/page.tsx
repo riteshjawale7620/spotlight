@@ -5,11 +5,11 @@ import WebProfilesContent from '@/components/web-profiles/WebProfilesContent'
 import { getWebProfiles } from '@/lib/services/contentService'
 
 export const metadata: Metadata = {
-  title: 'Web Profiles & Executive Dossiers | The Spotlight Leaders',
+  title: 'Web Profiles & Executive Dossiers | The Spotlight Business Leaders',
   description:
     'Authoritative web profiles, visionary perspectives, and long-form biographical reporting on the chief executives, innovators, and founders defining modern global enterprise.',
   openGraph: {
-    title: 'Web Profiles & Executive Dossiers | The Spotlight Leaders',
+    title: 'Web Profiles & Executive Dossiers | The Spotlight Business Leaders',
     description:
       'Authoritative web profiles, visionary perspectives, and long-form biographical reporting on the chief executives, innovators, and founders defining modern global enterprise.',
     images: ['/images/leaders/ranjan-mahtani.jpg'],

@@ -12,13 +12,13 @@ export default function Footer() {
             <Link href="/" className="inline-flex items-center gap-3 group">
               <Image
                 src="/logo/emblem.png"
-                alt="Spotlight Leaders Emblem"
+                alt="Spotlight Business Leaders Emblem"
                 width={1275}
                 height={1234}
                 className="w-9 h-9 object-contain group-hover:scale-105 transition-transform"
               />
               <h2 className="font-serif text-xl sm:text-2xl uppercase tracking-[0.16em] text-white font-normal group-hover:text-[#C5A059] transition-colors">
-                The Spotlight Leaders
+                The Spotlight Business Leaders
               </h2>
             </Link>
 
@@ -159,7 +159,7 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-3 flex flex-col justify-between">
             <div className="space-y-2">
               <h3 className="font-serif text-xs uppercase tracking-[0.2em] text-[#C5A059] font-bold">
-                The Spotlight Leaders Magazine
+                The Spotlight Business Leaders Magazine
               </h3>
               <p className="text-[11px] text-neutral-400 leading-snug">
                 Subscribe to the magazine and never miss an issue.
@@ -195,7 +195,7 @@ export default function Footer() {
               height={1234}
               className="w-4 h-4 object-contain opacity-80"
             />
-            <p>&copy; 2026 The Spotlight Leaders. All rights reserved.</p>
+            <p>&copy; 2026 The Spotlight Business Leaders. All rights reserved.</p>
           </div>
           <div className="flex items-center gap-4">
             <Link href="/studio" target="_blank" className="hover:text-[#C5A059] transition-colors">

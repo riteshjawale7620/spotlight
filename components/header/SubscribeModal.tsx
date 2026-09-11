@@ -42,7 +42,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
           <div className="flex justify-center mb-3">
             <Image
               src="/logo/emblem.png"
-              alt="Spotlight Leaders Emblem"
+              alt="Spotlight Business Leaders Emblem"
               width={1275}
               height={1234}
               className="w-12 h-12 object-contain"
@@ -53,7 +53,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
             Executive Membership
           </div>
           <h3 className="font-serif text-2xl md:text-3xl text-white font-normal">
-            Subscribe to The Spotlight Leaders
+            Subscribe to The Spotlight Business Leaders
           </h3>
           <p className="text-neutral-400 text-xs md:text-sm mt-2 font-sans">
             Gain unlimited access to investigative features, monthly digital editions, and exclusive industry reports.
@@ -63,7 +63,7 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
         {submitted ? (
           <div className="bg-[#1A1A1E] border border-[#C5A059]/40 p-6 text-center space-y-2">
             <Check className="w-8 h-8 text-[#C5A059] mx-auto" />
-            <h4 className="font-serif text-lg text-white">Welcome to The Spotlight Leaders</h4>
+            <h4 className="font-serif text-lg text-white">Welcome to The Spotlight Business Leaders</h4>
             <p className="text-xs text-neutral-400">
               Confirmation and your digital reader link have been sent to {email}.
             </p>

@@ -195,114 +195,7 @@ export default function NewsPageContent() {
 
       <main className="flex-1">
         {/* ========================================================= */}
-        {/* 1. HERO SECTION: LATEST NEWS / Real Stories. Global Impact */}
-        {/* ========================================================= */}
-        <section className="relative w-full border-b border-neutral-200 bg-neutral-50/50 overflow-hidden">
-          <div className="relative max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
-            {/* Background architectural photo with subtle fade */}
-            <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[58%] z-0 pointer-events-none opacity-25 lg:opacity-90 overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop"
-                alt="Financial District Architecture"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                className="object-cover object-[center_28%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/75 to-transparent hidden lg:block" />
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
-            </div>
-
-            {/* Content Container */}
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Left Column: Title, Subtitle, Metric Counters */}
-              <div className="lg:col-span-7 xl:col-span-8 space-y-6">
-                <span className="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.26em] text-[#A67C52] block">
-                  LATEST NEWS
-                </span>
-
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#121214] font-normal leading-[1.06] tracking-tight">
-                  Real Stories.<br />
-                  Global Impact.
-                </h1>
-
-                <p className="text-sm sm:text-base text-neutral-600 font-sans leading-relaxed max-w-xl">
-                  Stay informed with the latest developments in business, technology, industries and innovators shaping a better tomorrow.
-                </p>
-
-                {/* Metric Counters (500+ DAILY STORIES, 50+ INDUSTRIES, 100+ COUNTRIES) */}
-                <div className="pt-4 flex items-center gap-6 sm:gap-12 border-t border-neutral-200">
-                  <div>
-                    <span className="font-serif text-2xl sm:text-3xl font-bold text-[#141416] block leading-none">
-                      500+
-                    </span>
-                    <span className="text-[9.5px] sm:text-[10.5px] font-sans font-semibold uppercase tracking-[0.2em] text-neutral-500 block mt-1.5">
-                      DAILY STORIES
-                    </span>
-                  </div>
-
-                  <div className="h-8 w-[1px] bg-neutral-200" />
-
-                  <div>
-                    <span className="font-serif text-2xl sm:text-3xl font-bold text-[#141416] block leading-none">
-                      50+
-                    </span>
-                    <span className="text-[9.5px] sm:text-[10.5px] font-sans font-semibold uppercase tracking-[0.2em] text-neutral-500 block mt-1.5">
-                      INDUSTRIES
-                    </span>
-                  </div>
-
-                  <div className="h-8 w-[1px] bg-neutral-200" />
-
-                  <div>
-                    <span className="font-serif text-2xl sm:text-3xl font-bold text-[#141416] block leading-none">
-                      100+
-                    </span>
-                    <span className="text-[9.5px] sm:text-[10.5px] font-sans font-semibold uppercase tracking-[0.2em] text-neutral-500 block mt-1.5">
-                      COUNTRIES
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Dark Luxury Quote Box */}
-              <div className="lg:col-span-5 xl:col-span-4">
-                <div className="bg-[#0E0E10]/95 backdrop-blur-md text-white p-7 sm:p-8 border border-[#2B2B30] shadow-2xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#A67C52]/10 rounded-full blur-2xl pointer-events-none" />
-
-                  <span className="font-serif text-3xl sm:text-4xl text-[#C5A059] block leading-none mb-2">
-                    &ldquo;
-                  </span>
-
-                  <p className="font-editorial-italic text-lg sm:text-xl font-light text-neutral-200 leading-[1.35] tracking-wide mb-6">
-                    News is not just what happens today, but what it means for tomorrow.&rdquo;
-                  </p>
-
-                  <div className="pt-4 border-t border-neutral-800 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src="/logo/emblem.png"
-                        alt="Spotlight Emblem"
-                        width={1275}
-                        height={1234}
-                        className="w-4 h-4 object-contain"
-                      />
-                      <span className="text-[9.5px] uppercase tracking-[0.25em] text-[#C5A059] font-sans font-bold">
-                        THE SPOTLIGHT LEADERS
-                      </span>
-                    </div>
-                    <span className="text-[9px] uppercase tracking-widest text-neutral-500 font-mono">
-                      EDITORIAL
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================= */}
-        {/* 2. TOPIC FILTER PILLS BAR */}
+        {/* 1. TOPIC FILTER PILLS BAR */}
         {/* ========================================================= */}
         <div className="w-full bg-white border-b border-neutral-200 sticky top-[58px] md:top-[68px] z-30 shadow-xs">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
@@ -540,7 +433,7 @@ export default function NewsPageContent() {
                   <Link href="/magazine" className="relative w-28 aspect-[3/4] bg-neutral-800 border border-neutral-700 shadow-xl overflow-hidden mb-4 block group">
                     <Image
                       src="https://cdn.sanity.io/images/75rd7yks/production/642213a9c30cd1497c2494ffb7a2d862e970fd66-2400x3150.jpg"
-                      alt="The Spotlight Leaders Magazine Issue"
+                      alt="The Spotlight Business Leaders Magazine Issue"
                       fill
                       sizes="120px"
                       className="object-cover"
@@ -1036,7 +929,7 @@ export default function NewsPageContent() {
                       className="w-4 h-4 object-contain"
                     />
                     <span className="text-[9.5px] uppercase tracking-[0.24em] text-[#8D682E] font-sans font-bold block">
-                      THE SPOTLIGHT LEADERS
+                      THE SPOTLIGHT BUSINESS LEADERS
                     </span>
                   </div>
                 </div>

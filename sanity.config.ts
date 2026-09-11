@@ -10,13 +10,13 @@ export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
-  title: 'The Spotlight Leaders Editorial Studio',
+  title: 'Spotlight Business Leaders Editorial Studio',
   schema,
   plugins: [
     structureTool({
       structure: (S) =>
         S.list()
-          .title('The Spotlight Leaders Content')
+          .title('Spotlight Business Leaders Content')
           .items([
             S.listItem()
               .title('Magazines')

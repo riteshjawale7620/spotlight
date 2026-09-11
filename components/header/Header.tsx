@@ -121,13 +121,13 @@ export default function Header() {
                 <Link href="/" onClick={() => setDrawerOpen(false)} className="inline-flex items-center gap-2.5">
                   <Image
                     src="/logo/emblem.png"
-                    alt="Spotlight Leaders Emblem"
+                    alt="Spotlight Business Leaders Emblem"
                     width={1275}
                     height={1234}
                     className="w-7 h-7 object-contain"
                   />
                   <span className="font-serif text-base tracking-wider text-white font-medium">
-                    SPOTLIGHT LEADERS
+                    SPOTLIGHT BUSINESS LEADERS
                   </span>
                 </Link>
                 <button
@@ -177,7 +177,7 @@ export default function Header() {
                 Subscribe Now
               </button>
               <p className="text-[11px] text-neutral-500 text-center">
-                &copy; 2026 The Spotlight Leaders. All rights reserved.
+                &copy; 2026 The Spotlight Business Leaders. All rights reserved.
               </p>
             </div>
           </div>

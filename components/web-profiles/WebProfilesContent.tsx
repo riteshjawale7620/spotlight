@@ -67,67 +67,8 @@ export default function WebProfilesContent({ initialProfiles = [] }: WebProfiles
 
   return (
     <div className="w-full bg-white">
-      {/* 1. HERO MASTHEAD */}
-      <section className="w-full border-b border-neutral-200 bg-[#FAF9F6] py-12 sm:py-16 lg:py-20">
-        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="w-8 h-[1.5px] bg-[#8C6339]" />
-              <span className="text-[10.5px] uppercase tracking-[0.26em] font-bold text-[#8C6339]">
-                The Spotlight Executive Dossiers
-              </span>
-            </div>
-
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#121214] tracking-tight leading-[1.08]">
-              Web Profiles
-            </h1>
-
-            <p className="font-sans text-sm sm:text-base text-neutral-600 leading-relaxed max-w-2xl pt-1">
-              Authoritative leadership profiles, visionary perspectives, and long-form biographical reporting
-              on the chief executives, innovators, and founders defining modern global enterprise.
-            </p>
-
-            {/* Quick Metrics */}
-            <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-neutral-200/80">
-              <div>
-                <span className="font-serif text-2xl sm:text-3xl font-medium text-[#121214] block">
-                  {profiles.length}+
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 font-sans block mt-0.5">
-                  Web Profiles
-                </span>
-              </div>
-              <div>
-                <span className="font-serif text-2xl sm:text-3xl font-medium text-[#121214] block">
-                  4
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 font-sans block mt-0.5">
-                  Core Industries
-                </span>
-              </div>
-              <div>
-                <span className="font-serif text-2xl sm:text-3xl font-medium text-[#121214] block">
-                  30+
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 font-sans block mt-0.5">
-                  Global Markets
-                </span>
-              </div>
-              <div>
-                <span className="font-serif text-2xl sm:text-3xl font-medium text-[#121214] block">
-                  100%
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-500 font-sans block mt-0.5">
-                  Verified Leadership
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. SECTOR FILTERABLE DIRECTORY */}
-      <section className="w-full py-10 lg:py-16">
+      {/* 1. SECTOR FILTERABLE DIRECTORY */}
+      <section className="w-full py-8 sm:py-10 lg:py-14">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header & Filter Bar */}
           <div className="space-y-6 mb-10">
@@ -173,7 +114,7 @@ export default function WebProfilesContent({ initialProfiles = [] }: WebProfiles
               const meta = PROFILE_METADATA[profile.slug]
               const industry = meta?.sectorLabel || 'Business Leadership'
               const role = meta?.role || (profile.role && profile.role !== 'Executive Leader' ? profile.role : 'Executive Leader')
-              const organization = meta?.organization || (profile.organization && profile.organization !== 'Spotlight Leaders' ? profile.organization : 'Spotlight Leaders')
+              const organization = meta?.organization || (profile.organization && profile.organization !== 'Spotlight Business Leaders' ? profile.organization : 'Spotlight Business Leaders')
 
               return (
                 <article

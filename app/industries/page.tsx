@@ -209,90 +209,9 @@ export default function IndustriesPage() {
 
       <main className="flex-1">
         {/* ============================================================ */}
-        {/* SECTION 1: HERO SECTION (Editorial 2-Column Masthead)        */}
+        {/* SECTION 1: EXPLORE INDUSTRIES (4 Columns Grid)               */}
         {/* ============================================================ */}
-        <section className="w-full bg-white border-b border-neutral-200 py-14 lg:py-20">
-          <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* Left Column: Typography & Navigation (6 cols) */}
-              <div className="lg:col-span-6 space-y-6">
-                <div className="inline-flex items-center gap-2.5">
-                  <span className="h-px w-6 bg-[#A17A38]" />
-                  <p className="text-[10.5px] uppercase tracking-[0.28em] text-[#A17A38] font-sans font-bold">
-                    GLOBAL SECTOR INTELLIGENCE
-                  </p>
-                </div>
-
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-[56px] text-[#121214] font-normal leading-[1.06] tracking-tight">
-                  Insights Across<br />Every Industry.
-                </h1>
-
-                <p className="font-serif text-base sm:text-lg text-neutral-600 font-light leading-relaxed max-w-xl">
-                  From frontier technologies and autonomous mobility ecosystems to industrial
-                  manufacturing and global legal governance—explore comprehensive analysis, research-driven
-                  reporting, and executive perspectives redefining commerce.
-                </p>
-
-                <div className="pt-2 flex flex-wrap items-center gap-4">
-                  <a
-                    href="#explore-industries"
-                    className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#A17A38] hover:bg-[#8D682E] text-white text-[11px] font-sans font-bold tracking-[0.22em] uppercase rounded-none transition-colors group shadow-xs"
-                  >
-                    <span>EXPLORE ALL SECTORS</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                  <a
-                    href="#industry-spotlight"
-                    className="text-[11px] font-sans font-semibold uppercase tracking-wider text-neutral-600 hover:text-[#A17A38] transition-colors py-2"
-                  >
-                    Industry Spotlight &amp; Data →
-                  </a>
-                </div>
-
-                <div className="pt-4 border-t border-neutral-200 flex flex-wrap items-center gap-4 sm:gap-6 text-[10.5px] font-sans uppercase tracking-widest text-neutral-400">
-                  <span>Quarterly Sector Dossier</span>
-                  <span className="hidden sm:inline">•</span>
-                  <span>Curated by The Editorial Board</span>
-                </div>
-              </div>
-
-              {/* Right Column: Editorial Visual Spread (6 cols) */}
-              <div className="lg:col-span-6">
-                <div className="relative w-full aspect-[16/11] sm:aspect-[16/10] overflow-hidden rounded-[2px] shadow-xl border border-neutral-200 bg-neutral-200 group">
-                  <Image
-                    src="/images/hero-manhattan.jpg"
-                    alt="Global Industries & City Architecture"
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent pointer-events-none" />
-
-                  {/* Editorial Caption Bar */}
-                  <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 text-white flex items-end justify-between">
-                    <div>
-                      <span className="text-[9.5px] uppercase tracking-[0.22em] text-[#E0C285] font-sans font-bold block mb-1">
-                        EXECUTIVE DISPATCH
-                      </span>
-                      <p className="font-serif text-sm sm:text-base text-white/95 font-light leading-snug max-w-sm">
-                        Metropolitan commerce &amp; the evolving architecture of international trade.
-                      </p>
-                    </div>
-                    <span className="text-[9.5px] uppercase tracking-widest text-white/60 font-sans shrink-0 hidden sm:block">
-                      Editorial Archives
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* SECTION 2: EXPLORE INDUSTRIES (4 Columns Grid)               */}
-        {/* ============================================================ */}
-        <section id="explore-industries" className="w-full bg-white border-b border-neutral-200 py-12 lg:py-16">
+        <section id="explore-industries" className="w-full bg-white border-b border-neutral-200 py-10 lg:py-16">
           <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8 sm:mb-10">
               <h2 className="font-sans font-bold text-xs sm:text-[13px] tracking-[0.14em] text-[#141414] uppercase">
@@ -583,7 +502,7 @@ export default function IndustriesPage() {
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
                 <div>
                   <span className="text-[10px] uppercase tracking-[0.28em] text-[#A17A38] font-sans font-bold block mb-1.5">
-                    EXECUTIVE PERSPECTIVES • THE SPOTLIGHT LEADERS VOICES
+                    EXECUTIVE PERSPECTIVES • THE SPOTLIGHT BUSINESS LEADERS VOICES
                   </span>
                   <div className="flex items-center gap-3">
                     <h2 className="font-serif text-2xl sm:text-3xl uppercase tracking-[0.12em] text-[#121214] font-medium">
@@ -786,7 +705,7 @@ export default function IndustriesPage() {
                         onChange={(e) => setAgreed(e.target.checked)}
                         className="rounded-xs border-neutral-600 text-[#A17A38] focus:ring-[#A17A38]"
                       />
-                      <span>I agree to receive communications from The Spotlight Leaders.</span>
+                      <span>I agree to receive communications from The Spotlight Business Leaders.</span>
                     </label>
                   </form>
                 )}
@@ -797,7 +716,7 @@ export default function IndustriesPage() {
                 <div className="relative w-full max-w-[320px] aspect-[4/3] overflow-hidden rounded-[2px] shadow-2xl border border-white/10">
                   <Image
                     src="/images/features-editorial-spread.jpg"
-                    alt="The Spotlight Leaders Magazine"
+                    alt="The Spotlight Business Leaders Magazine"
                     fill
                     sizes="(max-width: 1024px) 100vw, 35vw"
                     className="object-cover object-center filter contrast-105"

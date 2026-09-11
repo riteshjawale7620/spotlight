@@ -4,11 +4,11 @@ import Footer from '@/components/footer/Footer'
 import MagazinePageContent from '@/components/magazine/MagazinePageContent'
 
 export const metadata: Metadata = {
-  title: 'Magazine Archive | The Spotlight Leaders',
+  title: 'Magazine Archive | The Spotlight Business Leaders',
   description:
     'Explore our past issues and relive the stories, leaders and ideas that continue to shape a brighter tomorrow.',
   openGraph: {
-    title: 'Magazine Archive | The Spotlight Leaders',
+    title: 'Magazine Archive | The Spotlight Business Leaders',
     description:
       'Explore our past issues and relive the stories, leaders and ideas that continue to shape a brighter tomorrow.',
     images: ['/images/magazine-hero-globe.jpg'],

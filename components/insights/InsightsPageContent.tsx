@@ -158,105 +158,7 @@ export default function InsightsPageContent({ initialData }: InsightsPageContent
 
   return (
     <div className="w-full bg-white min-h-screen text-[#121214]">
-      {/* 1. HERO SECTION */}
-      <section className="relative w-full border-b border-neutral-200 overflow-hidden bg-white">
-        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            {/* Left Content (7 cols) */}
-            <div className="lg:col-span-7 space-y-6">
-              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.25em] text-[#8C6339]">
-                Strategic Intelligence
-              </span>
-
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-[56px] font-normal leading-[1.08] tracking-tight text-[#121214]">
-                Insights Today.<br className="hidden sm:inline" /> Enduring Impact Tomorrow.
-              </h1>
-
-              <p className="text-sm sm:text-base text-neutral-600 font-sans leading-relaxed max-w-xl">
-                In-depth analytical reporting, market foresight, and executive perspectives on the systemic transformations shaping technology, industry, and global capital.
-              </p>
-
-              <div className="pt-2">
-                <a
-                  href="#featured-section"
-                  className="inline-flex items-center gap-2.5 bg-[#8C6339] hover:bg-[#734F2B] text-white px-6 sm:px-7 py-3.5 text-xs font-bold uppercase tracking-[0.2em] shadow-xs hover:shadow-md transition-all duration-300"
-                >
-                  <span>Explore In-Depth Analysis</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-
-              {/* Real Stats Counters */}
-              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-neutral-200 max-w-lg">
-                <div>
-                  <div className="font-serif text-2xl sm:text-3xl font-medium text-[#121214]">
-                    {allArticles.length > 0 ? `${allArticles.length}+` : '59'}
-                  </div>
-                  <div className="text-[11px] sm:text-xs text-neutral-500 font-sans mt-0.5">
-                    Analytical Articles
-                  </div>
-                </div>
-                <div>
-                  <div className="font-serif text-2xl sm:text-3xl font-medium text-[#121214]">
-                    15
-                  </div>
-                  <div className="text-[11px] sm:text-xs text-neutral-500 font-sans mt-0.5">
-                    Executive Leaders
-                  </div>
-                </div>
-                <div>
-                  <div className="font-serif text-2xl sm:text-3xl font-medium text-[#121214]">
-                    5
-                  </div>
-                  <div className="text-[11px] sm:text-xs text-neutral-500 font-sans mt-0.5">
-                    Core Industries
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Visual with Quote Overlay (5 cols) */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[3/2] w-full overflow-hidden shadow-xl border border-neutral-200 bg-neutral-900">
-                <Image
-                  src={featured.imageUrl || '/images/perspective-tech.jpg'}
-                  alt={featured.title}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
-
-                {/* Editorial Quote Card Overlay */}
-                <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between text-white">
-                  <div className="flex justify-end">
-                    <span className="font-serif text-4xl text-[#C5A059] leading-none">“</span>
-                  </div>
-
-                  <div className="space-y-4">
-                    <p className="font-serif text-lg sm:text-xl font-normal leading-snug text-neutral-100 line-clamp-3">
-                      {featured.title}
-                    </p>
-                    <div className="w-12 h-[1.5px] bg-[#C5A059]" />
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] uppercase tracking-[0.22em] text-[#C5A059] font-semibold">
-                      <span>Strategy</span>
-                      <span>·</span>
-                      <span>Markets</span>
-                      <span>·</span>
-                      <span>Governance</span>
-                      <span>·</span>
-                      <span>Foresight</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. REAL SANITY TOPIC FILTER BAR */}
+      {/* 1. REAL SANITY TOPIC FILTER BAR */}
       <section className="w-full bg-white border-b border-neutral-200 py-4 sticky top-[110px] z-30 shadow-xs">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
@@ -396,7 +298,7 @@ export default function InsightsPageContent({ initialData }: InsightsPageContent
                         required
                       />
                       <span className="text-[10px] text-neutral-500 leading-tight">
-                        I agree to receive executive communications from The Spotlight Leaders.
+                        I agree to receive executive communications from The Spotlight Business Leaders.
                       </span>
                     </label>
                   </form>
@@ -512,7 +414,7 @@ export default function InsightsPageContent({ initialData }: InsightsPageContent
               </div>
             </div>
 
-            {/* Right 4 Cols: SPOTLIGHT LEADERS LATEST MAGAZINE PROMO */}
+            {/* Right 4 Cols: SPOTLIGHT BUSINESS LEADERS LATEST MAGAZINE PROMO */}
             <div className="lg:col-span-4">
               <div className="bg-[#0F0F11] text-white p-7 sm:p-8 flex flex-col justify-between min-h-[490px] relative overflow-hidden group shadow-lg border border-[#27272A]">
                 <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-[#C5A059]/15 rounded-full blur-3xl pointer-events-none" />
@@ -522,7 +424,7 @@ export default function InsightsPageContent({ initialData }: InsightsPageContent
                     Latest Digital Edition
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl font-normal tracking-wide text-white uppercase leading-snug">
-                    Spotlight Leaders Magazine
+                    Spotlight Business Leaders Magazine
                   </h3>
                   <p className="text-xs text-neutral-400 font-sans leading-relaxed pt-1 line-clamp-2">
                     {magazineTitle}
