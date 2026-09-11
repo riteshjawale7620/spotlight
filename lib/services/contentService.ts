@@ -69,9 +69,66 @@ export async function getEditorsSelection(): Promise<{
 }
 
 export async function getCoverStory(): Promise<CoverStoryData> {
-  const data = await sanityFetch<CoverStoryData>({ query: COVER_STORY_QUERY })
-  return data && data.personName ? data : COVER_STORY_DATA
+  const data = await sanityFetch<any>({ query: COVER_STORY_QUERY })
+
+  const rawName = data?.personName || ''
+  const slugCandidate = (data?.storySlug || data?.slug || rawName || '').toLowerCase().trim()
+
+  // Match against our leader dataset
+  const matchedLeader = FEATURED_LEADERS_DATA.find(
+    (l) =>
+      l.slug === slugCandidate ||
+      l.name.toLowerCase() === rawName.toLowerCase() ||
+      slugCandidate.includes(l.slug)
+  )
+
+  let cleanName = rawName || matchedLeader?.name || COVER_STORY_DATA.personName
+  // If the rawName was a slug like "ranjan-mahtani" or has hyphens without spaces:
+  if (cleanName.includes('-') && !cleanName.includes(' ')) {
+    cleanName = cleanName
+      .split('-')
+      .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ')
+  } else if (cleanName.includes(' - ')) {
+    cleanName = cleanName.split(' - ')[0].trim()
+  } else if (cleanName.includes('_')) {
+    cleanName = cleanName.split('_')[0].trim()
+  }
+
+  const slug = matchedLeader?.slug || data?.storySlug || data?.slug || 'ranjan-mahtani'
+
+  const resolvedPortrait =
+    data?.personPortraitUrl ||
+    (matchedLeader ? resolveLeaderImage(matchedLeader.slug) : resolveLeaderImage(slug)) ||
+    '/images/leaders/ranjan-mahtani.jpg'
+
+  return {
+    issueTitle: data?.issueTitle || 'SPOTLIGHT EXCLUSIVE COVER STORY',
+    personName: cleanName,
+    tagline:
+      (data?.tagline &&
+      data.tagline !== rawName &&
+      data.tagline !== data.title &&
+      !data.tagline.includes('Human Wellness')
+        ? data.tagline
+        : matchedLeader?.quote || matchedLeader?.role) ||
+      'Disruption is the courage to reconstruct legacy manufacturing into an eco-conscious, agile ecosystem.',
+    designations:
+      data?.designations?.length && !data.designations.includes('FEATURED LEADER')
+        ? data.designations
+        : [
+            matchedLeader?.role?.toUpperCase() || 'FOUNDER & EXECUTIVE CHAIRMAN',
+            matchedLeader?.organization?.toUpperCase() || 'EPIC GROUP',
+            matchedLeader?.badge || 'GLOBAL DISRUPTOR',
+          ],
+    organization: matchedLeader?.organization || data?.organization || 'Epic Group',
+    storySlug: slug,
+    personPortraitUrl: resolvedPortrait,
+    magazineCoverUrl: data?.magazineCoverUrl || COVER_STORY_DATA.magazineCoverUrl,
+    signatureText: cleanName,
+  }
 }
+
 
 export async function getIndustries(): Promise<IndustryItem[]> {
   const data = await sanityFetch<any[]>({ query: INDUSTRIES_QUERY })

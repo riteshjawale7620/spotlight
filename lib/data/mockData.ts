@@ -438,16 +438,17 @@ export const EDITORS_COMPACT_DATA: ArticleItem[] = [
 ]
 
 export const COVER_STORY_DATA: CoverStoryData = {
-  issueTitle: 'SEPTEMBER 2026 ISSUE',
-  personName: 'CHRISTINA RAHM, PHD',
-  tagline: 'Building the Future of Human Wellness',
-  designations: ['FOUNDER', 'ENTREPRENEUR', 'INNOVATOR'],
-  organization: 'FOUNDER, CYNERTIKA',
-  storySlug: 'christina-rahm-building-the-future-of-human-wellness',
-  personPortraitUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop',
+  issueTitle: 'SPOTLIGHT EXCLUSIVE COVER STORY',
+  personName: 'Ranjan Mahtani',
+  tagline: 'Disruption is the courage to reconstruct legacy manufacturing into an eco-conscious, technologically agile ecosystem.',
+  designations: ['FOUNDER & EXECUTIVE CHAIRMAN', 'EPIC GROUP', 'GLOBAL DISRUPTOR'],
+  organization: 'Epic Group',
+  storySlug: 'ranjan-mahtani',
+  personPortraitUrl: '/images/leaders/ranjan-mahtani.jpg',
   magazineCoverUrl: 'https://cdn.sanity.io/images/75rd7yks/production/642213a9c30cd1497c2494ffb7a2d862e970fd66-2400x3150.jpg',
-  signatureText: 'Christina Rahm',
+  signatureText: 'Ranjan Mahtani',
 }
+
 
 export const INDUSTRIES_DATA: IndustryItem[] = [
   { id: 'ind-1', number: '01', name: 'TECH / AI', slug: 'tech-ai', articleCount: 14, iconName: 'Cpu' },
