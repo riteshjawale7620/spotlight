@@ -18,6 +18,7 @@ import {
   getInsights,
   getMultimedia,
   getLatestMagazine,
+  getLatestMagazines,
 } from '@/lib/services/contentService'
 
 export const revalidate = 60 // ISR revalidation window
@@ -34,6 +35,7 @@ export default async function HomePage() {
     insights,
     multimedia,
     latestMagazine,
+    latestMagazines,
   ] = await Promise.all([
     getHeroFeature(),
     getHeroRail(),
@@ -44,13 +46,18 @@ export default async function HomePage() {
     getInsights(),
     getMultimedia(),
     getLatestMagazine(),
+    getLatestMagazines(7),
   ])
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
-        <HeroSection initialLead={heroFeature} railItems={heroRail} />
+        <HeroSection
+          initialLead={heroFeature}
+          railItems={heroRail}
+          initialMagazines={latestMagazines}
+        />
         <EditorsSelection primary={editorsSelection.primary} compact={editorsSelection.compact} />
         <CoverStorySection data={coverStory} />
         <ExploreIndustries industries={industries} />

@@ -39,15 +39,6 @@ export default function SubscribeModal({ isOpen, onClose }: SubscribeModalProps)
         </button>
 
         <div className="text-center mb-6">
-          <div className="flex justify-center mb-3">
-            <Image
-              src="/logo/emblem.png"
-              alt="Spotlight Business Leaders Emblem"
-              width={1275}
-              height={1234}
-              className="w-12 h-12 object-contain"
-            />
-          </div>
           <div className="inline-flex items-center gap-1.5 text-[#C5A059] text-xs font-semibold tracking-widest uppercase mb-2">
             <Sparkles className="w-3.5 h-3.5" />
             Executive Membership

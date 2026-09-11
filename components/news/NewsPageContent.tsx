@@ -921,13 +921,7 @@ export default function NewsPageContent() {
                     A more informed world builds a more inclusive tomorrow.&rdquo;
                   </p>
                   <div className="flex items-center gap-2 pt-1">
-                    <Image
-                      src="/logo/emblem.png"
-                      alt="Spotlight Emblem"
-                      width={1275}
-                      height={1234}
-                      className="w-4 h-4 object-contain"
-                    />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8D682E]" />
                     <span className="text-[9.5px] uppercase tracking-[0.24em] text-[#8D682E] font-sans font-bold block">
                       THE SPOTLIGHT BUSINESS LEADERS
                     </span>

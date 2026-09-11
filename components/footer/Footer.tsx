@@ -9,14 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-[#222226]">
           {/* Column 1: Brand & Social (3.5 cols) */}
           <div className="lg:col-span-4 space-y-5">
-            <Link href="/" className="inline-flex items-center gap-3 group">
-              <Image
-                src="/logo/emblem.png"
-                alt="Spotlight Business Leaders Emblem"
-                width={1275}
-                height={1234}
-                className="w-9 h-9 object-contain group-hover:scale-105 transition-transform"
-              />
+            <Link href="/" className="inline-flex items-center group">
               <h2 className="font-serif text-xl sm:text-2xl uppercase tracking-[0.16em] text-white font-normal group-hover:text-[#C5A059] transition-colors">
                 The Spotlight Business Leaders
               </h2>
@@ -188,13 +181,6 @@ export default function Footer() {
         {/* Bottom copyright & Sanity Studio link */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-neutral-500">
           <div className="flex items-center gap-2">
-            <Image
-              src="/logo/emblem.png"
-              alt="Spotlight Emblem"
-              width={1275}
-              height={1234}
-              className="w-4 h-4 object-contain opacity-80"
-            />
             <p>&copy; 2026 The Spotlight Business Leaders. All rights reserved.</p>
           </div>
           <div className="flex items-center gap-4">

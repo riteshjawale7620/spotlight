@@ -181,13 +181,6 @@ export default function IssueAndNewsletter({ magazine }: IssueAndNewsletterProps
               />
               <div className="absolute inset-0 bg-black/20 flex items-center justify-center p-4 text-center">
                 <div className="border border-white/30 backdrop-blur-xs p-3 px-4 bg-black/40 flex flex-col items-center">
-                  <Image
-                    src="/logo/emblem.png"
-                    alt="Spotlight Emblem"
-                    width={1275}
-                    height={1234}
-                    className="w-5 h-5 object-contain mb-1"
-                  />
                   <span className="font-serif text-xs uppercase tracking-[0.25em] text-[#C5A059] block font-bold">
                     The Spotlight Business Leaders
                   </span>

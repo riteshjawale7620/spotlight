@@ -18,6 +18,7 @@ import {
   CATEGORY_PAGE_QUERY,
   INSIGHTS_PAGE_QUERY,
   LATEST_MAGAZINE_QUERY,
+  ALL_MAGAZINES_QUERY,
 } from '@/sanity/lib/queries'
 import {
   HERO_FEATURE_DATA,
@@ -125,6 +126,17 @@ export async function getLatestMagazine() {
     issuuLink: 'https://issuu.com/thespotlightleaders/docs/manuel_rendon',
     description: 'Manuel Rendon — 2026’s Most Influential Business Leaders Transforming the Chemical Industry',
   }
+}
+
+export async function getLatestMagazines(limit = 7) {
+  const data = await sanityFetch<any[]>({
+    query: ALL_MAGAZINES_QUERY,
+    revalidate: 60,
+  })
+  if (data && data.length > 0) {
+    return data.filter((m) => m.imageUrl).slice(0, limit)
+  }
+  return []
 }
 
 export async function getMultimedia(): Promise<{

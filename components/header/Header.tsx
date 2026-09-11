@@ -33,39 +33,27 @@ export default function Header() {
   return (
     <>
       <header className="w-full bg-white border-b border-[#EAEAEA] sticky top-0 z-40">
-        {/* Top Header Bar (Sleek, perfectly centered 3-column flex layout) */}
-        <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8 h-[64px] sm:h-[76px] md:h-[86px] lg:h-[94px] flex items-center justify-between">
-          {/* Left Flank: Mobile/Drawer Menu Button (Equal width to Right Flank on all screen sizes) */}
-          <div className="w-10 sm:w-[130px] flex items-center justify-start shrink-0 z-20">
-            <button
-              onClick={() => setDrawerOpen(true)}
-              className="p-2 -ml-1 text-neutral-800 hover:text-black hover:bg-neutral-100/70 rounded transition-colors flex items-center gap-2"
-              aria-label="Open Navigation Menu"
-            >
-              <Menu className="w-5 h-5 sm:w-5 sm:h-5 stroke-[1.6]" />
-              <span className="hidden sm:inline text-xs font-semibold tracking-widest text-neutral-700">MENU</span>
-            </button>
-          </div>
-
-          {/* Center Column: Brand Identity (Main Logo from public/logo/logo.png - Refined Scale) */}
-          <div className="flex-1 flex items-center justify-center text-center px-2 min-w-0 z-10">
-            <Link href="/" className="inline-flex items-center justify-center group max-w-full py-1">
+        {/* Top Header Bar (Leftmost Logo, Right-aligned Actions & Mobile-only Hamburger Menu) */}
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 h-[64px] sm:h-[76px] md:h-[86px] lg:h-[94px] flex items-center justify-between gap-4">
+          {/* Left Column: Brand Identity (Main Logo at Leftmost Corner) */}
+          <div className="flex items-center justify-start shrink-0">
+            <Link href="/" className="inline-flex items-center group py-1">
               <Image
                 src="/logo/logo.png"
                 alt="Spotlight Business Leaders"
                 width={2172}
                 height={724}
                 priority
-                className="h-10 xs:h-11 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                className="h-9 xs:h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-transform group-hover:scale-[1.02]"
               />
             </Link>
           </div>
 
-          {/* Right Flank: Search on Mobile, Search + Subscribe on Tablet/Desktop (Equal width to Left Flank) */}
-          <div className="w-10 sm:w-[130px] flex items-center justify-end gap-2 sm:gap-4 shrink-0 z-20">
+          {/* Right Column: Search, Subscribe (Desktop/Tablet) & Mobile-only Hamburger Menu */}
+          <div className="flex items-center justify-end gap-2 sm:gap-4 shrink-0">
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 -mr-1 text-neutral-800 hover:text-black uppercase transition-colors flex items-center gap-1.5"
+              className="p-2 text-neutral-800 hover:text-black uppercase transition-colors flex items-center gap-1.5"
               aria-label="Search"
             >
               <span className="hidden sm:inline text-xs font-semibold tracking-wider">Search</span>
@@ -78,33 +66,42 @@ export default function Header() {
             >
               Subscribe
             </button>
+
+            {/* Mobile/Small Screen Only: Hamburger Menu Button */}
+            <button
+              onClick={() => setDrawerOpen(true)}
+              className="md:hidden p-2 text-neutral-800 hover:text-black hover:bg-neutral-100/70 rounded transition-colors flex items-center justify-center"
+              aria-label="Open Navigation Menu"
+            >
+              <Menu className="w-6 h-6 stroke-[1.8]" />
+            </button>
           </div>
         </div>
 
         {/* Bottom Nav: Editorial Categories (Desktop Only) */}
-        <nav className="border-t border-[#EAEAEA] hidden md:block w-full h-[42px] bg-white">
-            <div className="max-w-[1360px] mx-auto px-6 lg:px-8 h-full flex items-center justify-center">
-              <ul className="flex items-center justify-center space-x-8 lg:space-x-12 text-[11px] tracking-[0.2em] font-sans font-semibold text-neutral-800">
-                {NAV_LINKS.map((link) => {
-                  const active = isActive(link.href)
-                  return (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className={`transition-colors py-1 relative ${
-                          active
-                            ? 'text-[#A67C52] font-bold after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#A67C52]'
-                            : 'hover:text-[#A67C52] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#A67C52] hover:after:w-full after:transition-all after:duration-200'
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </nav>
+        <nav className="hidden md:block w-full h-[42px] bg-black border-t border-neutral-900 shadow-xs">
+          <div className="max-w-[1360px] mx-auto px-6 lg:px-8 h-full flex items-center justify-center">
+            <ul className="flex items-center justify-center space-x-8 lg:space-x-12 text-[11px] tracking-[0.2em] font-sans font-semibold text-neutral-300">
+              {NAV_LINKS.map((link) => {
+                const active = isActive(link.href)
+                return (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className={`transition-colors py-1 relative ${
+                        active
+                          ? 'text-[#C5A059] font-bold after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C5A059]'
+                          : 'hover:text-[#C5A059] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#C5A059] hover:after:w-full after:transition-all after:duration-200'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </nav>
       </header>
 
       {/* Slide-out Navigation Drawer for Mobile & Detailed Exploration */}
@@ -118,14 +115,7 @@ export default function Header() {
           <div className="relative w-full max-w-sm bg-[#0E0E10] text-white h-full shadow-2xl p-6 flex flex-col justify-between z-10 animate-in slide-in-from-left duration-300 overflow-y-auto">
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-[#2A2A2E]">
-                <Link href="/" onClick={() => setDrawerOpen(false)} className="inline-flex items-center gap-2.5">
-                  <Image
-                    src="/logo/emblem.png"
-                    alt="Spotlight Business Leaders Emblem"
-                    width={1275}
-                    height={1234}
-                    className="w-7 h-7 object-contain"
-                  />
+                <Link href="/" onClick={() => setDrawerOpen(false)} className="inline-flex items-center">
                   <span className="font-serif text-base tracking-wider text-white font-medium">
                     SPOTLIGHT BUSINESS LEADERS
                   </span>
@@ -154,14 +144,6 @@ export default function Header() {
                       <ChevronRight className="w-4 h-4 text-neutral-500" />
                     </Link>
                   ))}
-                  <Link
-                    href="/studio"
-                    target="_blank"
-                    className="flex items-center justify-between py-2.5 text-sm tracking-wider text-[#C5A059] font-medium border-b border-white/5 hover:underline"
-                  >
-                    <span>Sanity CMS Studio</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
                 </div>
               </div>
             </div>

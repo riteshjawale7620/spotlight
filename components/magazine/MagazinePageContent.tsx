@@ -569,22 +569,14 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
         <div className="mt-20 pt-7 pb-7 px-6 sm:px-10 bg-[#FAFAFA] border border-neutral-200 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           
           {/* Left: Brand Identity */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center">
             <Image
-              src="/logo/emblem.png"
-              alt="Spotlight Business Leaders Emblem"
-              width={1275}
-              height={1234}
-              className="w-8 h-8 object-contain"
+              src="/logo/logo.png"
+              alt="Spotlight Business Leaders"
+              width={2172}
+              height={724}
+              className="h-10 sm:h-12 w-auto object-contain"
             />
-            <div>
-              <span className="font-serif text-base sm:text-lg tracking-[0.18em] uppercase text-[#141416] font-normal block">
-                THE SPOTLIGHT BUSINESS LEADERS
-              </span>
-              <span className="text-[7.5px] font-sans tracking-[0.26em] uppercase text-neutral-500 block">
-                INSPIRING THE FUTURE OF BUSINESS
-              </span>
-            </div>
           </div>
 
           {/* Center: Quote */}
