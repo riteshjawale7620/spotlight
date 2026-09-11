@@ -164,15 +164,30 @@ const VOICES_ESSAYS = [
   },
 ]
 
-// Industry Spotlight sectors
+// Industry Spotlight sectors - Available in Spotlight Business Leaders
 const INDUSTRY_SPOTLIGHT = [
-  { name: 'FINANCE', imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600&auto=format&fit=crop', slug: 'finance' },
-  { name: 'HEALTHCARE', imageUrl: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=600&auto=format&fit=crop', slug: 'healthcare' },
-  { name: 'REAL ESTATE', imageUrl: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=600&auto=format&fit=crop', slug: 'real-estate' },
-  { name: 'RETAIL', imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=600&auto=format&fit=crop', slug: 'retail' },
-  { name: 'ENERGY', imageUrl: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=600&auto=format&fit=crop', slug: 'energy' },
-  { name: 'MANUFACTURING', imageUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop', slug: 'manufacturing' },
+  {
+    name: 'TECH / AI',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop',
+    slug: 'tech-ai',
+  },
+  {
+    name: 'AUTOMOBILE',
+    imageUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop',
+    slug: 'automobile',
+  },
+  {
+    name: 'MANUFACTURING',
+    imageUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop',
+    slug: 'manufacturing',
+  },
+  {
+    name: 'LEGAL',
+    imageUrl: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800&auto=format&fit=crop',
+    slug: 'legal',
+  },
 ]
+
 
 export default function NewsPageContent() {
   const [activeTopic, setActiveTopic] = useState('ALL NEWS')
@@ -804,17 +819,20 @@ export default function NewsPageContent() {
         <section className="w-full py-10 sm:py-14 border-b border-neutral-200 bg-white">
           <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-              {/* Left Column: Heading, Subtitle & Button - 3 Cols */}
-              <div className="lg:col-span-3 space-y-3">
-                <h2 className="font-serif text-xl sm:text-2xl uppercase tracking-[0.14em] text-[#121214] font-normal leading-tight">
+              {/* Left Column: Heading - 4 Cols */}
+              <div className="lg:col-span-4 space-y-3">
+                <span className="text-[10px] uppercase tracking-[0.24em] text-[#8D682E] font-sans font-bold block">
+                  SECTOR COVERAGE
+                </span>
+                <h2 className="font-serif text-2xl sm:text-3xl text-neutral-900 leading-tight uppercase tracking-wide">
                   INDUSTRY<br />SPOTLIGHT
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-600 font-sans leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 font-sans leading-relaxed max-w-sm">
                   Deep dives into the industries shaping tomorrow.
                 </p>
                 <div className="pt-2">
                   <Link
-                    href="/category/industries"
+                    href="/industries"
                     className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#A67C52] text-[#8D682E] hover:bg-[#8D682E] hover:text-white text-[10px] font-sans font-bold uppercase tracking-[0.18em] transition-colors"
                   >
                     <span>EXPLORE INDUSTRIES</span>
@@ -823,24 +841,25 @@ export default function NewsPageContent() {
                 </div>
               </div>
 
-              {/* Right Column: 6 Photo Sectors - 9 Cols */}
-              <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {/* Right Column: 4 Available Photo Sectors - 8 Cols */}
+              <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
                 {INDUSTRY_SPOTLIGHT.map((item) => (
                   <Link
                     key={item.name}
                     href={`/category/${item.slug}`}
                     className="group flex flex-col items-center text-center"
                   >
-                    <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900 shadow-xs border border-neutral-200">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900 shadow-xs border border-neutral-200 group-hover:border-[#8D682E]/60 transition-all duration-300">
                       <Image
                         src={item.imageUrl}
                         alt={item.name}
                         fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-                        className="object-cover brightness-90"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                        className="object-cover brightness-95 group-hover:scale-105 transition-transform duration-500"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                     </div>
-                    <span className="font-serif text-[11px] font-bold tracking-wider text-neutral-800 uppercase mt-2.5 group-hover:text-[#A67C52] transition-colors">
+                    <span className="font-serif text-[11.5px] sm:text-xs font-bold tracking-wider text-neutral-900 uppercase mt-3 group-hover:text-[#A67C52] transition-colors">
                       {item.name}
                     </span>
                   </Link>
