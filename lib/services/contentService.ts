@@ -97,9 +97,10 @@ export async function getCoverStory(): Promise<CoverStoryData> {
 
   const slug = matchedLeader?.slug || data?.storySlug || data?.slug || 'ranjan-mahtani'
 
-  const resolvedPortrait =
-    data?.personPortraitUrl ||
-    (matchedLeader ? resolveLeaderImage(matchedLeader.slug) : resolveLeaderImage(slug)) ||
+  // The web profiles pic for this leader
+  const webProfilePic =
+    matchedLeader?.imageUrl ||
+    resolveLeaderImage(slug) ||
     '/images/leaders/ranjan-mahtani.jpg'
 
   return {
@@ -123,7 +124,7 @@ export async function getCoverStory(): Promise<CoverStoryData> {
           ],
     organization: matchedLeader?.organization || data?.organization || 'Epic Group',
     storySlug: slug,
-    personPortraitUrl: resolvedPortrait,
+    personPortraitUrl: webProfilePic,
     magazineCoverUrl: data?.magazineCoverUrl || COVER_STORY_DATA.magazineCoverUrl,
     signatureText: cleanName,
   }
