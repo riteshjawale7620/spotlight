@@ -922,7 +922,7 @@ export default function NewsPageContent() {
               </div>
 
               {/* Right Column: Editorial Quote with Notebook Flatlay - 7 Cols */}
-              <div className="lg:col-span-7 relative aspect-[16/7] sm:aspect-[16/6] overflow-hidden border border-neutral-200 shadow-sm flex items-center justify-between p-6 sm:p-10">
+              <div className="lg:col-span-7 relative min-h-[240px] sm:min-h-[280px] overflow-hidden border border-neutral-200 shadow-sm flex items-center p-7 sm:p-10 lg:p-12">
                 <Image
                   src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop"
                   alt="Editorial Notebook and Coffee"
@@ -932,16 +932,16 @@ export default function NewsPageContent() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-transparent/40" />
 
-                <div className="relative z-10 max-w-md space-y-2.5">
-                  <span className="font-serif text-2xl text-[#8D682E] leading-none block">
+                <div className="relative z-10 max-w-lg space-y-3">
+                  <span className="font-serif text-5xl sm:text-6xl text-[#8D682E] leading-none block select-none -mb-1">
                     &ldquo;
                   </span>
-                  <p className="font-editorial-italic text-base sm:text-lg text-neutral-800 leading-snug font-light">
+                  <p className="font-editorial-italic text-xl sm:text-2xl md:text-[26px] text-neutral-900 leading-snug font-normal">
                     A more informed world builds a more inclusive tomorrow.&rdquo;
                   </p>
-                  <div className="flex items-center gap-2 pt-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8D682E]" />
-                    <span className="text-[9.5px] uppercase tracking-[0.24em] text-[#8D682E] font-sans font-bold block">
+                  <div className="flex items-center gap-2 pt-2">
+                    <span className="w-2 h-2 rounded-full bg-[#8D682E]" />
+                    <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-[#8D682E] font-sans font-bold block">
                       THE SPOTLIGHT BUSINESS LEADERS
                     </span>
                   </div>
