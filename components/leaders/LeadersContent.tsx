@@ -666,9 +666,9 @@ export default function LeadersContent({ initialLeaders }: LeadersContentProps) 
               </div>
 
               <div className="lg:col-span-4 flex items-center justify-center">
-                <div className="relative w-full max-w-[320px] aspect-[4/3] overflow-hidden rounded-[2px] shadow-lg border border-[#DDD5C7]">
+                <div className="relative w-full max-w-[360px] aspect-[16/10] overflow-hidden rounded-[2px] shadow-lg border border-[#DDD5C7]">
                   <Image
-                    src="/images/features-editorial-spread.jpg"
+                    src="/images/demo/mag-demo.png"
                     alt="The Spotlight Business Leaders Magazine on desk"
                     fill
                     sizes="(max-width: 1024px) 100vw, 35vw"
