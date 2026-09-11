@@ -72,8 +72,8 @@ export default function EditorialTrio({
             </div>
 
             <div className="divide-y divide-neutral-200">
-              {trendingWeek.map((item) => (
-                <article key={item.rank} className="py-3.5 first:pt-0 last:pb-0 group">
+              {trendingWeek.map((item, idx) => (
+                <article key={item.rank || item.slug || `trend-${idx}`} className="py-3.5 first:pt-0 last:pb-0 group">
                   <div className="flex items-baseline gap-4">
                     <span className="font-serif text-base text-neutral-400 group-hover:text-[#A67C52] transition-colors shrink-0">
                       {item.rank}
@@ -104,15 +104,15 @@ export default function EditorialTrio({
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4">
-              {voices.map((voice) => (
-                <div key={voice.id} className="flex flex-col items-center text-center group">
-                  <div className="relative w-20 h-24 sm:w-24 sm:h-28 overflow-hidden bg-neutral-200 mb-2.5 filter grayscale group-hover:grayscale-0 transition-all duration-300">
+              {voices.map((voice, idx) => (
+                <div key={voice.id || voice.slug || `voice-${idx}`} className="flex flex-col items-center text-center group">
+                  <div className="relative w-20 h-24 sm:w-24 sm:h-28 overflow-hidden bg-neutral-200 mb-2.5 shadow-2xs group-hover:shadow-md transition-all duration-300">
                     <Image
                       src={voice.avatarUrl}
                       alt={voice.name}
                       fill
                       sizes="96px"
-                      className="object-cover object-top"
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
 

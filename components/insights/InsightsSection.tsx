@@ -15,7 +15,7 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 320
+      const scrollAmount = 270
       scrollRef.current.scrollBy({
         left: direction === 'right' ? scrollAmount : -scrollAmount,
         behavior: 'smooth',
@@ -62,39 +62,39 @@ export default function InsightsSection({ insights }: InsightsSectionProps) {
           </div>
         </div>
 
-        {/* 5-Card Slider Container */}
+        {/* 5-Card Slider Container with Smaller, Equal-Sized Images */}
         <div
           ref={scrollRef}
           className="flex gap-5 overflow-x-auto pb-4 no-scrollbar scroll-smooth snap-x snap-mandatory"
         >
-          {insights.map((item) => (
+          {insights.map((item, idx) => (
             <article
-              key={item.id}
-              className="min-w-[240px] sm:min-w-[260px] md:min-w-[270px] flex-shrink-0 snap-start group flex flex-col justify-between"
+              key={item.id || (item as any)._id || item.slug || `insight-${idx}`}
+              className="w-[220px] sm:w-[240px] md:w-[250px] flex-shrink-0 snap-start group flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-900 mb-3.5">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100 rounded-sm mb-3">
                   <Image
                     src={item.imageUrl}
                     alt={item.title}
                     fill
-                    sizes="270px"
-                    className="object-cover"
+                    sizes="(max-width: 768px) 220px, 250px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                 </div>
 
-                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-500 block mb-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#A67C52] block mb-1">
                   {item.category}
                 </span>
 
-                <h3 className="font-serif text-sm sm:text-[15px] font-medium leading-snug text-neutral-900 group-hover:text-[#A67C52] transition-colors line-clamp-2">
+                <h3 className="font-serif text-sm sm:text-[14.5px] font-medium leading-snug text-neutral-900 group-hover:text-[#A67C52] transition-colors line-clamp-2">
                   <Link href={`/articles/${item.slug}`}>{item.title}</Link>
                 </h3>
               </div>
 
               {item.readingTimeMinutes && (
-                <p className="text-[10px] text-neutral-400 font-sans tracking-widest uppercase mt-4">
+                <p className="text-[10px] text-neutral-400 font-sans tracking-widest uppercase mt-3">
                   {item.readingTimeMinutes} Min Read
                 </p>
               )}

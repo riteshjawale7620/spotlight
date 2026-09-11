@@ -32,6 +32,7 @@ export const HERO_RAIL_QUERY = groq`
 export const EDITORS_SELECTION_QUERY = groq`
   {
     "primary": *[_type == "article" && placement == "editorSelectionPrimary"][0...3] {
+      "id": _id,
       _id,
       title,
       "slug": slug.current,
@@ -42,6 +43,7 @@ export const EDITORS_SELECTION_QUERY = groq`
       "imageUrl": featuredImage.asset->url
     },
     "compact": *[_type == "article" && placement == "editorSelectionCompact"][0...3] {
+      "id": _id,
       _id,
       title,
       "slug": slug.current,
@@ -294,6 +296,7 @@ export const EDITORIAL_TRIO_QUERY = groq`
 // Fetch Insights & Analysis row
 export const INSIGHTS_QUERY = groq`
   *[_type in ["industryPost", "post", "article"]] | order(publishedAt desc, _createdAt desc)[0...5] {
+    "id": _id,
     _id,
     title,
     "slug": slug.current,

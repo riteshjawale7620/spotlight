@@ -31,8 +31,8 @@ export default function EditorsSelection({ primary, compact }: EditorsSelectionP
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
           {/* Left: 3 Primary Cards (9 cols) */}
           <div className="lg:col-span-8 xl:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {primary.slice(0, 3).map((item) => (
-              <article key={item.id} className="group flex flex-col justify-between">
+            {primary.slice(0, 3).map((item, idx) => (
+              <article key={item.id || (item as any)._id || item.slug || `ed-pri-${idx}`} className="group flex flex-col justify-between">
                 <div>
                   {/* Photo container */}
                   <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-200 mb-4">
@@ -72,9 +72,9 @@ export default function EditorsSelection({ primary, compact }: EditorsSelectionP
 
           {/* Right: 3 Compact Row Cards (3 cols) */}
           <div className="lg:col-span-4 xl:col-span-3 flex flex-col justify-between divide-y divide-neutral-200 border-t lg:border-t-0 lg:border-l border-neutral-200 lg:pl-8 pt-6 lg:pt-0">
-            {compact.slice(0, 3).map((item) => (
+            {compact.slice(0, 3).map((item, idx) => (
               <article
-                key={item.id}
+                key={item.id || (item as any)._id || item.slug || `ed-cmp-${idx}`}
                 className="py-4 first:pt-0 last:pb-0 flex items-center gap-4 group"
               >
                 <div className="relative w-20 h-20 shrink-0 overflow-hidden bg-neutral-200">

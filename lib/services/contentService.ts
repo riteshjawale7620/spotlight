@@ -59,12 +59,16 @@ export async function getEditorsSelection(): Promise<{
   primary: ArticleItem[]
   compact: ArticleItem[]
 }> {
-  const data = await sanityFetch<{ primary: ArticleItem[]; compact: ArticleItem[] }>({
+  const data = await sanityFetch<{ primary: any[]; compact: any[] }>({
     query: EDITORS_SELECTION_QUERY,
   })
   return {
-    primary: data?.primary?.length ? data.primary : EDITORS_PRIMARY_DATA,
-    compact: data?.compact?.length ? data.compact : EDITORS_COMPACT_DATA,
+    primary: data?.primary?.length
+      ? data.primary.map((item, idx) => ({ ...item, id: item.id || item._id || `ed-pri-${idx}` }))
+      : EDITORS_PRIMARY_DATA,
+    compact: data?.compact?.length
+      ? data.compact.map((item, idx) => ({ ...item, id: item.id || item._id || `ed-cmp-${idx}` }))
+      : EDITORS_COMPACT_DATA,
   }
 }
 
@@ -161,8 +165,14 @@ export async function getEditorialTrio() {
 }
 
 export async function getInsights(): Promise<ArticleItem[]> {
-  const data = await sanityFetch<ArticleItem[]>({ query: INSIGHTS_QUERY })
-  return data && data.length ? data : INSIGHTS_DATA
+  const data = await sanityFetch<any[]>({ query: INSIGHTS_QUERY })
+  if (data && data.length) {
+    return data.map((item, idx) => ({
+      ...item,
+      id: item.id || item._id || `ins-${idx}`,
+    }))
+  }
+  return INSIGHTS_DATA
 }
 
 export async function getInsightsPageData() {
