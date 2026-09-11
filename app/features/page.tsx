@@ -102,7 +102,7 @@ export default async function FeaturesPage() {
       title: 'DIGITAL MAGAZINE',
       description:
         'High-quality digital editions for a premium reading experience on any device.',
-      imageUrl: '/images/format-magazine.jpg',
+      imageUrl: '/images/demo/dg.png',
       icon: BookOpen,
     },
   ]
