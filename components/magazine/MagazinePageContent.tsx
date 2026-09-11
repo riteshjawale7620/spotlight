@@ -364,205 +364,142 @@ export default function MagazinePageContent({ initialSanityMagazines = [] }: Mag
           </div>
         </div>
 
-        {/* Main Section Layout: Left Year Grids (83%) + Right Editorial Rail (17%) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+        {/* Main Section Layout: Full-Width Chronological Magazine Archive */}
+        <div className="w-full space-y-14 lg:space-y-18">
+          {years.map((year) => {
+            const yearIssues = filteredIssues.filter((i) => i.year === year)
+            if (yearIssues.length === 0) return null
 
-          {/* Left / Center: Chronological Magazine Archive */}
-          <div className="lg:col-span-10 space-y-14 lg:space-y-18">
-            {years.map((year) => {
-              const yearIssues = filteredIssues.filter((i) => i.year === year)
-              if (yearIssues.length === 0) return null
+            return (
+              <section key={year} id={`year-section-${year}`} className="scroll-mt-24">
+                {/* Year Header Line with divider stretching across */}
+                <div className="flex items-center gap-4 sm:gap-6 pb-2.5 mb-7 border-b border-neutral-200">
+                  <span className="font-serif text-3xl sm:text-4xl lg:text-[46px] font-normal text-[#141416] tracking-tight shrink-0">
+                    {year}
+                  </span>
+                  
+                  <div className="hidden sm:block flex-1 h-[1px] bg-neutral-200" />
 
-              return (
-                <section key={year} id={`year-section-${year}`} className="scroll-mt-24">
-                  {/* Year Header Line with divider stretching across */}
-                  <div className="flex items-center gap-4 sm:gap-6 pb-2.5 mb-7 border-b border-neutral-200">
-                    <span className="font-serif text-3xl sm:text-4xl lg:text-[46px] font-normal text-[#141416] tracking-tight shrink-0">
-                      {year}
-                    </span>
-                    
-                    <div className="hidden sm:block flex-1 h-[1px] bg-neutral-200" />
+                  <span className="text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-[0.24em] text-[#7A7A7A] shrink-0">
+                    {YEAR_THEMES[year]?.subtitle}
+                  </span>
 
-                    <span className="text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-[0.24em] text-[#7A7A7A] shrink-0">
-                      {YEAR_THEMES[year]?.subtitle}
-                    </span>
-
-                    <button
-                      onClick={() => scrollToYear(year)}
-                      className="group inline-flex items-center gap-1.5 text-[10.5px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.16em] text-[#141416] hover:text-[#8C6D3B] transition-colors shrink-0 ml-auto sm:ml-0"
-                    >
-                      <span>VIEW YEAR</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                    </button>
-                  </div>
-
-                  {/* 3-Column Magazine Grid with Generous Width */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-8">
-                    {yearIssues.map((issue) => (
-                      <div
-                        key={issue.id}
-                        className="group flex flex-col cursor-pointer"
-                        onClick={() => setSelectedIssue(issue)}
-                      >
-                        {/* Magazine Cover Container (Standard Magazine Ratio 3:4) */}
-                        <div className="relative aspect-[3/4] w-full bg-[#1A1A1E] rounded-xs overflow-hidden shadow-xs group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1 border border-neutral-200">
-                          
-                          {/* Background Artwork */}
-                          <Image
-                            src={issue.imageUrl}
-                            alt={issue.title}
-                            fill
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className="object-cover object-center"
-                          />
-
-                          {/* If not a pre-designed Sanity cover, render high-contrast typography overlay */}
-                          {!issue.isSanity ? (
-                            <>
-                              {/* Gradient Overlays for High-End Magazine Look */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/75" />
-
-                              {/* Authentic Magazine Typography Overlay */}
-                              <div className="absolute inset-0 p-3 sm:p-3.5 flex flex-col justify-between text-white z-10 select-none">
-                                
-                                {/* Top Masthead & Issue Bar */}
-                                <div>
-                                  <div className="text-center pt-0.5 pb-1 border-b border-white/30">
-                                    <span className="font-serif text-[9.5px] sm:text-[10.5px] tracking-[0.18em] uppercase text-white font-medium block leading-tight">
-                                      THE SPOTLIGHT BUSINESS LEADERS
-                                    </span>
-                                    <span className="text-[5.5px] sm:text-[6px] tracking-[0.28em] uppercase text-neutral-300 block font-sans">
-                                      INSPIRING THE FUTURE OF BUSINESS
-                                    </span>
-                                  </div>
-
-                                  <div className="flex justify-between items-center text-[6.5px] sm:text-[7px] uppercase tracking-[0.16em] text-[#C5A059] font-bold mt-1.5">
-                                    <span>{issue.issueNumber}</span>
-                                    <span>{issue.monthYear.toUpperCase()}</span>
-                                  </div>
-                                </div>
-
-                                {/* Middle/Bottom: Issue Title & Subtitle */}
-                                <div className="space-y-1.5 pb-1">
-                                  <h3 className="font-serif text-sm sm:text-base font-medium uppercase text-white leading-tight drop-shadow-sm group-hover:text-[#E2C792] transition-colors">
-                                    {issue.title}
-                                  </h3>
-                                  <p className="text-[8px] sm:text-[8.5px] font-sans text-neutral-300 leading-snug line-clamp-2">
-                                    {issue.subtitle}
-                                  </p>
-                                  <div className="w-5 h-[1px] bg-[#C5A059] mt-2" />
-                                </div>
-
-                              </div>
-                            </>
-                          ) : (
-                            /* For authentic Sanity covers: subtle bottom shadow for depth */
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                          )}
-
-                          {/* Hover Action Badge */}
-                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-20 backdrop-blur-[2px]">
-                            <span className="inline-flex items-center gap-1.5 bg-white text-[#141416] text-[10px] font-sans font-bold uppercase tracking-[0.16em] px-3.5 py-1.5 shadow-lg">
-                              <Eye className="w-3.5 h-3.5" />
-                              Inspect Issue
-                            </span>
-                          </div>
-
-                        </div>
-
-                        {/* Below Cover Metadata */}
-                        <div className="mt-3 text-left space-y-1">
-                          <div className="flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-sans font-bold uppercase tracking-[0.14em] text-[#8C6D3B]">
-                            <span>{issue.issueNumber}</span>
-                            <span>&bull;</span>
-                            <span>{issue.monthYear}</span>
-                          </div>
-                          <h4 className="font-serif text-sm sm:text-[15px] font-medium text-[#141416] leading-snug line-clamp-1 group-hover:text-[#8C6D3B] transition-colors">
-                            {issue.leaderName ? issue.leaderName : issue.title}
-                          </h4>
-                          <p className="text-[11px] sm:text-xs text-[#6E6E73] font-sans line-clamp-1">
-                            {issue.leaderName ? issue.title : (issue.subtitle || issue.description)}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )
-            })}
-
-            {filteredIssues.length === 0 && (
-              <div className="text-center py-16 bg-white border border-[#E8E3DA] p-8">
-                <p className="font-serif text-lg text-neutral-800">No issues found in this category.</p>
-                <button
-                  onClick={() => setSelectedCategory('ALL ISSUES')}
-                  className="mt-4 px-4 py-2 bg-[#785338] text-white text-xs font-sans uppercase tracking-widest"
-                >
-                  View All Issues
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Right: Dedicated Luxury Magazine Editorial Rail */}
-          <aside className="lg:col-span-2 hidden lg:flex flex-col items-center border-l border-neutral-200 pl-6 xl:pl-8 select-none">
-            <div className="sticky top-28 flex flex-col items-center text-center space-y-7 w-full">
-              
-              {/* Giant Vertical Typography reading vertically downwards */}
-              <div className="py-2">
-                <span
-                  style={{ writingMode: 'vertical-rl' }}
-                  className="font-serif text-5xl xl:text-6xl text-[#141416] tracking-[0.28em] uppercase font-normal leading-none"
-                >
-                  MAGAZINE
-                </span>
-              </div>
-
-              {/* Short Vertical Line */}
-              <div className="w-[1px] h-8 bg-[#C5A059]" />
-
-              {/* Manifesto Callout */}
-              <div className="space-y-1 max-w-[130px]">
-                <h4 className="font-serif text-xs uppercase tracking-[0.16em] text-[#141416] font-semibold leading-relaxed">
-                  STORIES THAT INSPIRE ACROSS TIME.
-                </h4>
-              </div>
-
-              {/* Short Vertical Line */}
-              <div className="w-[1px] h-8 bg-neutral-200" />
-
-              {/* Vertical Category Index */}
-              <div className="space-y-2 text-[9.5px] font-sans font-bold tracking-[0.22em] uppercase text-neutral-600">
-                {['PEOPLE', 'IDEAS', 'INDUSTRIES', 'SOCIETY', 'THE WORLD'].map((tag) => (
                   <button
-                    key={tag}
-                    onClick={() => {
-                      if (CATEGORIES.includes(tag)) setSelectedCategory(tag)
-                    }}
-                    className="block w-full hover:text-[#8C6D3B] transition-colors py-0.5 cursor-pointer"
+                    onClick={() => scrollToYear(year)}
+                    className="group inline-flex items-center gap-1.5 text-[10.5px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.16em] text-[#141416] hover:text-[#8C6D3B] transition-colors shrink-0 ml-auto sm:ml-0"
                   >
-                    {tag}
+                    <span>VIEW YEAR</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                   </button>
-                ))}
-              </div>
+                </div>
 
-              {/* Short Vertical Line */}
-              <div className="w-[1px] h-8 bg-neutral-200" />
+                {/* Full-Width 4-Column Magazine Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-8">
+                  {yearIssues.map((issue) => (
+                    <div
+                      key={issue.id}
+                      className="group flex flex-col cursor-pointer"
+                      onClick={() => setSelectedIssue(issue)}
+                    >
+                      {/* Magazine Cover Container (Standard Magazine Ratio 3:4) */}
+                      <div className="relative aspect-[3/4] w-full bg-[#1A1A1E] rounded-xs overflow-hidden shadow-xs group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1 border border-neutral-200">
+                        
+                        {/* Background Artwork */}
+                        <Image
+                          src={issue.imageUrl}
+                          alt={issue.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover object-center"
+                        />
 
-              {/* Editorial Pull Quote */}
-              <div className="max-w-[150px] space-y-3 text-center">
-                <p className="font-editorial-italic text-xs text-[#4A4A4A] leading-relaxed">
-                  &ldquo;Progress looks different every year. But the purpose remains the same.&rdquo;
-                </p>
-                <div className="w-6 h-[1px] bg-[#C5A059] mx-auto" />
-                <span className="text-[8px] font-sans font-bold uppercase tracking-[0.24em] text-[#8C6D3B] block">
-                  THE SPOTLIGHT BUSINESS LEADERS
-                </span>
-              </div>
+                        {/* If not a pre-designed Sanity cover, render high-contrast typography overlay */}
+                        {!issue.isSanity ? (
+                          <>
+                            {/* Gradient Overlays for High-End Magazine Look */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/75" />
 
+                            {/* Authentic Magazine Typography Overlay */}
+                            <div className="absolute inset-0 p-3 sm:p-3.5 flex flex-col justify-between text-white z-10 select-none">
+                              
+                              {/* Top Masthead & Issue Bar */}
+                              <div>
+                                <div className="text-center pt-0.5 pb-1 border-b border-white/30">
+                                  <span className="font-serif text-[9.5px] sm:text-[10.5px] tracking-[0.18em] uppercase text-white font-medium block leading-tight">
+                                    THE SPOTLIGHT BUSINESS LEADERS
+                                  </span>
+                                  <span className="text-[5.5px] sm:text-[6px] tracking-[0.28em] uppercase text-neutral-300 block font-sans">
+                                    INSPIRING THE FUTURE OF BUSINESS
+                                  </span>
+                                </div>
+
+                                <div className="flex justify-between items-center text-[6.5px] sm:text-[7px] uppercase tracking-[0.16em] text-[#C5A059] font-bold mt-1.5">
+                                  <span>{issue.issueNumber}</span>
+                                  <span>{issue.monthYear.toUpperCase()}</span>
+                                </div>
+                              </div>
+
+                              {/* Middle/Bottom: Issue Title & Subtitle */}
+                              <div className="space-y-1.5 pb-1">
+                                <h3 className="font-serif text-sm sm:text-base font-medium uppercase text-white leading-tight drop-shadow-sm group-hover:text-[#E2C792] transition-colors">
+                                  {issue.title}
+                                </h3>
+                                <p className="text-[8px] sm:text-[8.5px] font-sans text-neutral-300 leading-snug line-clamp-2">
+                                  {issue.subtitle}
+                                </p>
+                              </div>
+
+                              {/* Bottom Accent Line */}
+                              <div className="w-full h-[1px] bg-[#C5A059]/60" />
+                            </div>
+                          </>
+                        ) : (
+                          // Real Sanity cover has baked-in design
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                        )}
+
+                        {/* Interactive Inspect Button on Hover */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-none">
+                          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white/95 text-[#141416] text-[10.5px] font-sans font-bold uppercase tracking-wider shadow-lg">
+                            <Eye className="w-3.5 h-3.5 text-[#8C6D3B]" />
+                            <span>Inspect Issue</span>
+                          </span>
+                        </div>
+
+                      </div>
+
+                      {/* Below Cover Metadata */}
+                      <div className="mt-3 text-left space-y-1">
+                        <div className="flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-sans font-bold uppercase tracking-[0.14em] text-[#8C6D3B]">
+                          <span>{issue.issueNumber}</span>
+                          <span>&bull;</span>
+                          <span>{issue.monthYear}</span>
+                        </div>
+                        <h4 className="font-serif text-sm sm:text-[15px] font-medium text-[#141416] leading-snug line-clamp-1 group-hover:text-[#8C6D3B] transition-colors">
+                          {issue.leaderName ? issue.leaderName : issue.title}
+                        </h4>
+                        <p className="text-[11px] sm:text-xs text-[#6E6E73] font-sans line-clamp-1">
+                          {issue.leaderName ? issue.title : (issue.subtitle || issue.description)}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )
+          })}
+
+          {filteredIssues.length === 0 && (
+            <div className="text-center py-16 bg-white border border-[#E8E3DA] p-8">
+              <p className="font-serif text-lg text-neutral-800">No issues found in this category.</p>
+              <button
+                onClick={() => setSelectedCategory('ALL ISSUES')}
+                className="mt-4 px-4 py-2 bg-[#785338] text-white text-xs font-sans uppercase tracking-widest"
+              >
+                View All Issues
+              </button>
             </div>
-          </aside>
-
+          )}
         </div>
 
         {/* Bottom Signature Banner */}
