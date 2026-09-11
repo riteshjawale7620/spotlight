@@ -529,13 +529,13 @@ export default function LeadersContent({ initialLeaders }: LeadersContentProps) 
                   key={story.slug}
                   className="bg-white border border-neutral-200 overflow-hidden flex flex-col justify-between group hover:shadow-md transition-shadow"
                 >
-                  <Link href={`/leaders/${story.slug}`} className="block relative w-full aspect-[3/2] overflow-hidden bg-neutral-200">
+                  <Link href={`/leaders/${story.slug}`} className="block relative w-full aspect-[4/5] overflow-hidden bg-neutral-100">
                     <Image
                       src={story.imageUrl}
                       alt={story.title}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                      className="object-cover"
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   </Link>
 
