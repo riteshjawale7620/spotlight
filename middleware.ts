@@ -6,7 +6,7 @@ import type { NextRequest } from 'next/server'
 // Set to `true` to crash the site with 503 Service Unavailable.
 // Set to `false` (or delete this file) to restore the normal website immediately.
 // ============================================================================
-const SIMULATE_CRASH = true
+const SIMULATE_CRASH = false
 
 export function middleware(request: NextRequest) {
   if (SIMULATE_CRASH) {
